@@ -1,0 +1,302 @@
+/* .RecipesView {
+    margin: 40px;
+    padding: 20px;  
+
+} */
+
+DRAGGABLE MENU BACK-NEXT
+.NavAbsolute-RecipesView{
+    position: absolute;
+}
+
+#NavSection-RecipesView{
+    position: absolute;
+    cursor: move;
+    /* scale: 60%; */
+    /* margin-left: 50%; */
+    z-index: 9;
+    /* border: 1px solid rgb(159, 159, 159); */
+    /* background-color: rgba(250, 235, 215, 0.868); */
+    /* padding: 50px 40px; */
+    /* border-radius: 20px; */
+    /* box-shadow: 1px 1px 10px 1px rgba(72, 72, 72, 0.208); */
+     }
+
+#NavButton-RecipesView{
+    z-index: 10;
+    /* box-shadow: 1px 1px 10px 1px rgba(72, 72, 72, 0.208); */
+    /* align-items: center; */
+    /* border-radius: 10px; */
+    /* border: 1px solid rgb(159, 159, 159); */
+    /* background-color: rgb(252, 198, 3);  */
+    /* padding: 8px; */
+    /* width: 180px; */
+    text-transform: uppercase;
+    /* font-size: 150%; */
+}
+
+.NavLink-RecipesView{
+
+    color: rgb(0, 0, 0); 
+    font-weight: bold;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+/* .form1{
+    padding: 20px;
+}
+
+.form2{
+    padding: 20px;
+} */
+
+
+/* SEARCH BAR */
+/* .buttonSearchBar{
+    text-align: center;
+    display: grid;
+    margin-left: 80%;
+    margin-right: 80%;
+    padding-left: 0;
+    padding-right: 0;
+
+} */
+
+/* button.buttonSearchBar{
+    text-align: center;
+    scale: 60%;
+    border-radius: 10px;
+    border: 1px solid rgb(195, 195, 195);
+    background-color: rgb(255, 87, 51); 
+    color: white; 
+    font-weight: bold;
+    padding: 8px;
+    width: 180px;
+    text-transform: uppercase;
+    font-size: 150%;
+} */
+
+
+/* 02 RECIPES GRID */
+#recipesGrid{
+    
+    display: grid;
+    margin: 0 auto;
+    padding: 0 auto;
+    /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    width: 100%;
+    /* padding: 20px; */
+    gap: 15px;
+    /* list-style-type:none; */
+}
+
+.gridContainer {
+  box-sizing: border-box;
+}
+
+.recipeBlock{
+    aspect-ratio: 1/1;
+    background-color: rgb(255, 255, 255);
+    object-fit: contain;
+    text-align: center;
+    /* margin: auto; */
+    border-radius: 30px;
+    /* border: 2px solid rgba(68, 53, 5, 0.26); */
+    border: 2px solid rgb(255, 255, 255);
+    /* box-shadow: 1px 1px 10px 1px rgba(72, 72, 72, 0.208); */
+    /* box-sizing: border-box; */
+    cursor: pointer;
+    margin: 0 auto;
+    padding: 0 auto
+    
+}
+
+.recipeBlock:hover{
+    /* background-color: rgb(152, 152, 152); */
+    background-color: #f1b80e ;
+    color: white;
+}
+
+.recipeBlock img{
+    
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1/1;
+    background-color: rgb(255, 255, 255);
+    object-fit: cover;
+    text-align: center;
+    margin: auto;
+    background-color: rgba(255, 255, 255, 0.847);
+    border-radius: 30px;
+    /* border: 2px solid rgba(68, 53, 5, 0.26); */
+    box-shadow: 1px 1px 10px 1px rgba(72, 72, 72, 0.208);
+}
+
+/* 01 RECIPE FEATURE */
+.featBlock{
+    display: grid;
+    margin-top: 20px;
+    grid-template-columns: 1fr 1fr;
+    height: 900px;
+    /* grid-template-columns: repeat(auto-fill, minmax(600px, 1fr)) */
+}
+
+.featImage{
+    border-radius: 5px;
+    width: 90%;
+    object-fit: cover;
+    /* padding: 20px; */
+}
+
+/* .favoriteTitle {
+    padding: 30px;
+} */
+
+li.featLegend {
+    font-size: 100%;
+    text-align: justify;
+    padding: 10px;   
+    text-overflow: scroll;
+    /* line-height: 150%; */
+}
+
+/* h5.imageLeg {
+    font-size: 100%;
+    font-weight: 900;
+} */
+
+h5.imageLeg {
+    font-size: 100%;
+}
+
+.featLegend{
+
+    /* font-size: 100%;  */
+    padding-top: 20px;
+    /* line-height: 200%; */
+    /* justify-content: right; */
+  font-family:'Courier New', Courier, monospace;
+  /* overflow: hidden; */
+    /* text-overflow: scroll; */
+  /* aspect-ratio: 1 / 1; */
+}
+
+.featText {
+    white-space: nowrap;
+    /* overflow: hidden; */
+    /* text-overflow: scroll; */
+}
+
+/* FORM SUCCESS MESSAGE */
+.success{
+    padding-top: 0;
+    padding-bottom: 0;
+    text-transform: capitalize;
+    color: rgb(7, 184, 7);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    font-size: 70%;
+}
+
+
+
+/* FORMS SETUP */
+.featBlockform{
+    padding: 20px;
+}
+
+.featLegendform {
+    font-size: 90%;
+    display: grid;
+    grid-template-columns:  1fr 1fr 1fr;
+    align-items: baseline;
+    
+
+}
+
+.mealInput{
+    border-radius: 5px;
+    border: 1px solid rgb(195, 195, 195);
+    color: rgb(249, 246, 212); 
+    color: rgb(74, 74, 74);
+    height: 20px;
+    text-transform: capitalize;
+}
+
+/*  CHANGES WHEN MOUSE IS OVER FORM CASES */
+.mealInput:hover{
+    background-color: rgb(250, 248, 237); 
+    height: 20px;
+    color: rgb(74, 74, 74);
+}
+
+/* button.buttonFeatLegendform{
+    border-radius: 10px;
+    border: 1px solid rgb(195, 195, 195);
+    background-color: rgb(255, 87, 51); 
+    color: white; 
+    font-weight: bold;
+    padding: 8px;
+    width: 180px;
+    text-transform: uppercase;
+    font-size: 150%;
+} */
+
+/*  CHANGES WHEN MOUSE IS OVER FORM BUTTON */
+#buttonA:hover{
+    /* border: 1px solid rgb(136, 136, 136); */
+    background-color: rgb(255, 123, 0); 
+}
+ .featGrid {
+    box-sizing: border-box;
+ }
+/* label.buttonFeatLegendform{
+    padding: 20px;
+} */
+
+
+/* label.featLegendform{
+    display: grid;
+    grid-template-columns:  2fr;
+} */
+
+.visible {
+    display: block;
+  }
+
+.invisible {
+    display: none;
+}
+
+#searchBar {
+    background-color: #FFCC00;
+    border-radius: 0px;
+}
+
+/* .progressBar1 {
+    width: 100px;
+			height: 100px;
+			padding: 13px 18px;
+			border-radius: 60px;
+			font-size: 15px;
+			text-align: center;
+            background-color: rgb(254, 97, 0);
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+} */
+
+#backNext {
+    text-decoration: none;
+    color:rgb(255, 255, 255);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 700;
+    text-shadow: 1px 1px 1px grey
+
+}
+
+#backNext:hover {
+    color: rgb(255, 123, 0); 
+}

@@ -1,0 +1,206 @@
+
+
+/* #GoBack {
+    font-size: 16px;
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+}
+
+#SeeSL {
+    font-size: 16px;
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+} */
+
+#bottomButtons {
+    display: center;
+}
+
+#weekPlanView{
+    
+    padding: 30px;
+    /* background-color: rgb(247, 247, 247); */
+    background-color: #FFCC00;
+    /* border-radius: 50px; */
+    /* width: 100%; */
+    box-sizing: content-box;
+    justify-content: center;
+}
+
+/* THE GRID */
+.colWP{
+    /* padding: 10px; */
+    border-radius: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    box-sizing: content-box;
+    justify-content: center;
+    word-spacing: 10px;
+    /* background-color: white; */
+}
+
+
+#weekNamesGrid{
+    gap: 10px;
+    /* border: 10px solid rgb(217, 217, 217); */
+    /* border: 1px solid rgb(217, 217, 217); */
+    /* box-shadow: 1px 1px 10px 1px rgba(72, 72, 72, 0.208); */
+    /* border-radius: 30px; */
+    /* padding: 10px; */
+    font-weight: bold;
+    /* color: white; */
+
+}
+
+/* BLANC SPACE ON THE LEFT UPPER CORNER OF THE GRID */
+#weekNames{
+    /* background-color: aqua; */
+    padding: 30px;
+    
+}
+
+
+
+#weekName{
+    /* background-color: rgb(208, 208, 208); */
+    color: rgb(255, 255, 255);
+    background-color: #f1a70e;
+    box-shadow: 1px 1px 3px 1px rgba(183, 89, 1, 0.208);
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-shadow: 1px 1px 1px grey;
+    font-weight: lighter;
+    border-radius: 10px;
+    /* border: 1px solid rgb(178, 178, 178); */
+}
+
+/* MEAL TYPE COLUMN */
+#mealType1{
+    /* background-color: rgb(208, 208, 208); */
+    background-color: #f1a70e;
+
+    color: rgb(255, 255, 255);
+    box-shadow: 1px 1px 3px 1px rgba(183, 89, 1, 0.208);
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px;
+    width: 50px;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-shadow: 1px 1px 1px grey;
+    font-weight: lighter;
+    /* border: 1px solid rgb(178, 178, 178); */
+    /* background-color: violet; */
+}
+
+#mealTypeEmpty{
+    /* background-color: rgb(208, 208, 208); */
+    background-color: #FFCC00;
+    padding: 10px;
+    width: 50px;
+    }
+
+#emptySquare{
+    /* background-color: rgb(208, 208, 208); */
+    background-color: #FFCC00;
+
+    /* color: rgb(72, 72, 72); */
+    /* box-shadow: 1px 1px 3px 1px rgba(183, 89, 1, 0.208); */
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    /* border: 1px solid rgb(178, 178, 178); */
+    /* background-color: violet; */
+}
+
+#mealType{
+    width: 300px;
+    box-shadow: 1px 1px 3px 1px rgba(72, 72, 72, 0.208);
+}
+
+#mealType:hover{
+    background-color: #1a1a1832;
+    cursor: pointer;
+}
+
+.recipesGrid {
+    /* padding: 20px; */
+    /* gap: 20px; */
+    list-style-type:none;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+
+.bottomButtons{
+    scale: 60%;
+    margin-left: 50%;
+    position: fixed;
+    padding: 50px 40px;
+    /* border: 1px solid rgb(159, 159, 159); */
+    background-color: rgba(250, 235, 215, 0.868);
+    border-radius: 20px;
+    box-shadow: 1px 1px 10px 1px rgba(72, 72, 72, 0.208);
+    
+}
+
+.NavButton-WeekPlanView{
+    box-shadow: 1px 1px 10px 1px rgba(72, 72, 72, 0.208);
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid rgb(159, 159, 159);
+    background-color: rgb(252, 198, 3); 
+    
+    padding: 10px;
+    font-size: 130%;
+}
+
+.NavLink-WeekPlanView{
+
+    color: rgb(255, 255, 255); 
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+
+
+/* .recipeBlock{
+    aspect-ratio: 1/1;
+    background-color: rgb(255, 255, 255);
+    object-fit: contain;
+    text-align: center;
+    margin: auto;
+    border-radius: 30px;
+    border: 2px solid rgba(68, 53, 5, 0.26);
+    box-shadow: 1px 1px 10px 1px rgba(72, 72, 72, 0.208);
+    box-sizing: border-box;
+    cursor: pointer;
+    
+} */
+/* .card {
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+} */
+
+
+/* .card {
+    padding: 0px;
+    margin: 10px 10px 10px 10px;
+} */
+
+/* #imageWP {
+    size: 20px;
+    margin: 5px 5px 5px 5px;
+    padding: 0px 0px 0px 0px; 
+    aspect-ratio: 1/1;
+    object-fit: cover;
+} */
+

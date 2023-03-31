@@ -1,0 +1,56 @@
+  #header {
+  /* background-position: center; */
+  background-repeat: no-repeat;
+  /* background-position: contain; */
+  /* background: no-repeat center center fixed; */
+  /* min-height: 600px; */
+  width: 100vw;
+  /* --imgw: 5088;
+  --imgh: 2666;
+  min-height: calc(100vw * var(--imgh) / var(--imgw)); */
+  /* min-height: 100%;
+  min-width: 1320; */
+  /* width: 100%; */
+  height: auto;
+  position: fixed;
+  background-position: cover;
+  }
+
+  .banner {
+    /* background-attachment: fixed; */
+ background-position: center;
+ background-repeat: no-repeat;
+ background-size: cover;
+ --imgw: 5088;
+  --imgh: 2666;
+  min-height: calc(100vw * var(--imgh) / var(--imgw));
+  display: table;
+ width: 100%;
+   }
+    
+   .hero {
+    /* vertical-align: top; */
+    padding-top: 15%;
+    padding-left: 0;
+    height: 100%;
+    margin: 0 auto;
+    display: table-cell;
+   }
+    
+   .container {
+    width: 1170px;
+    margin: 0 auto;
+   }
+
+   .banner1 {
+    /* background-attachment: fixed; */
+ --imgw: 1200;
+  --imgh: 400;
+  min-height: calc(80vw * var(--imgh) / var(--imgw));
+  /* display: table; */
+}
+
+#Logincard {
+  border-radius: 20px;
+  padding: 80px
+}
