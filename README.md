@@ -4,6 +4,10 @@
 
 - Go to project directory (cd GROMEAL). Run `npm install` in project directory. This will install server-related dependencies such as `express`.
 - `cd client` and run `npm install`. This will install client dependencies (React).
+- Specific dependencies :
+     + Progress bar : `cd client` and run `npm install @mui/material @emotion/react @emotion/styled`
+     + Saving PDF : `cd client` and run `npm install jspdf --save` 
+     + Pop-up notifications : `cd client` and run `npm install --save react-toastify`, run 'yarn add react-toastify'
 
 ### Database Prep
 
