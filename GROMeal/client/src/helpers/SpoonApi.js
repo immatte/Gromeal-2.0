@@ -10,12 +10,6 @@
  *   status: the response status code if the server was reached; 0 otherwise
  *   error: the error message if there was either a server or network error, '' otherwise
  **/
-const API_KEY = "5e24157871f640c684861272be1907c9";
-const ISA_KEY = "0fe1d39b2dbf4cb5a8737ca807512217";
-const ANAMARI_KEY = "ed26cdd2c2ed48398cc8d8d88a1b8782";
-const ANAMARI_KEY2 = "02d7327dca734133ac458e767e8373b3";
-const ANAMARI_KEY3 = "44cd6e5f97844750bb59d8bb5f69370d";
-const ANAMARI_KEY4 = "2249a308392d4fefb388c16c01db781a";
 
 class SpoonApi {
 
