@@ -43,7 +43,6 @@ function App() {
     const [user, setUser] = useState(Local.getUser());
     const [loginErrorMsg, setLoginErrorMsg] = useState('');
     const [userPlans, setUserPlans] = useState([]);
-    const [warning, setWarning] = useState([]);
     const navigate = useNavigate();
     const [planRecipes, setPlanRecipes] = useState([]);
     const [recipes, setRecipes] = useState([]);

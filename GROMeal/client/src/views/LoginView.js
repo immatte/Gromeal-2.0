@@ -17,11 +17,7 @@ function LoginView(props) {
         handleWarning();
       }, {});
 
-    const {warning, setWarning, user, setUser} = useContext(RecipesContext);
-
-    useEffect(() => {
-        handleWarning();      
-      }, {});
+    // const {warning, setWarning, user, setUser} = useContext(RecipesContext);
 
     const handleWarning = event => {
         toast(warning, {
@@ -50,20 +46,6 @@ function LoginView(props) {
                 break;
         }
     }
-
-    const handleWarning = event => {
-        console.log(warning);
-        toast(warning, {
-            position: "bottom-right",
-            autoClose: 5000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            })
-            }    
 
     async function handleSubmit(event) {
         event.preventDefault();
