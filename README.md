@@ -24,7 +24,7 @@ DB_PASS=root
 
 - Run `npm run migrate` in the project folder of this repository (GROMEAL), in a new terminal window. This will create 3 tables called 'users', 'plans' and 'recipes' in your database.
 
-- Make sure you understand how each table is constructed. In your MySQL console, you can run `use gromeal;` and then `describe users;` or `describe plans;` or `describe recipes;` to see the structure of the students table.
+- Make sure you understand how each table is constructed. In your MySQL console, you can run `use gromeal;` and then `describe users;` or `describe plans;` or `describe recipes;` or `describe list;` to see the structure of the students table.
 
 ### Development
 
