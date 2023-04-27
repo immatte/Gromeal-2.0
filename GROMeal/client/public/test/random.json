@@ -4258,7 +4258,8 @@
                 "bread"
             ],
             "diets": [
-                "lacto ovo vegetarian"
+                "lacto ovo vegetarian",
+                "vegetarian"
             ],
             "occasions": [],
             "instructions": "In a large bowl or stand mixer, whisk together yeast, flours, rye flakes, flaxseed, amaranth, quinoa, soy flour, wheat gluten, skim milk powder and salt.\nStir in warm water and honey, mixing thoroughly to form a cohesive, fairly firm (but workable) dough.\nTurn out onto a floured board or knead with the dough hook for 12 minutes, until very elastic and smooth.\nPlace into a bowl, cover and allow to rest 30 minutes.\nRoll rested dough into a log shape and tuck into a greased loaf pan.\nCover with a clean towel and allow to rise 50-60 minutes.\nPreheat oven to 350F.\nSlash the top of the loaf 2-3 times with a sharp knife or lame.\nBake 40 minutes. Turn out of pan immediately and cool on a rack before slicing",
@@ -4708,7 +4709,8 @@
                 "paleolithic",
                 "lacto ovo vegetarian",
                 "primal",
-                "vegan"
+                "vegan",
+                "vegetarian"
             ],
             "occasions": [
                 "fall",
@@ -5078,7 +5080,8 @@
                 "gluten free",
                 "dairy free",
                 "lacto ovo vegetarian",
-                "vegan"
+                "vegan",
+                "vegetarian"
             ],
             "occasions": [],
             "instructions": "<ol><li>In a large pan with lid heat olive oil over medium high heat. Add onions and cook for 1 minute. Add garlic and cook until onions are translucent and garlic is fragrant.</li><li>Add quinoa to pan, stir to combine. Slowly add in broth and bring to a boil.</li><li>Cover and reduce heat to low, cook for 15 minutes.</li><li>In the last 2-3 minutes of cooking add in broccolini on top of the quinoa (do not stir) and cover.</li><li>Uncover and toss broccolini and quinoa together.</li><li>Season to taste with salt and pepper.</li><li>Add walnuts and serve hot.</li></ol>",
@@ -5706,7 +5709,8 @@
                 "hor d'oeuvre"
             ],
             "diets": [
-                "lacto ovo vegetarian"
+                "lacto ovo vegetarian",
+                "vegetarian"
             ],
             "occasions": [],
             "instructions": "<ol><li>Start dough by whisking dry ingredients in a medium sized bowl. Add butter and incorporate with a pastry blender until coarse crumbs develop. Add cream cheese and incorporate well.</li><li>Plop in egg yolk and stir with a fork until dough comes together into a ball.</li><li>Turn dough out onto a floured surface and roll into a uniform ball. Slightly press flat with the palm of your hand and wrap in plastic wrap. Chill at least one hour.</li><li>Once dough has chilled, set it on a floured surface and roll it out to about 10 x 12. Cut into sixten even squares. Lay the dough squares on a parchment paper covered baking sheet and set in the freezer to chill.</li><li>In a separate bowl, toss the apples with the lemon juice, maple syrup, spices and brown sugar. Make sure to cover all of the apple pieces.</li><li>Take dough out of freezer. Drop about 1 tablespoon of filling into the center of each piece of dough. Fold one pointed edge towards its opposite corner to form a triangle.  Crimp edges with a fork along the seams. Repeat with all of the dough.</li><li>Brush a little milk over the top of each turnover and sprinkle with extra sugar if desired. (Pop back into the freezer for a quick chill if the dough is soft.). Bake in a preheated oven at 400 degrees for 20 minutes or until browned.</li></ol>",
@@ -22659,7 +22663,9 @@
                 "hor d'oeuvre"
             ],
             "diets": [
-                "gluten free"
+                "gluten free",
+                "vegan",
+                "vegetarian"
             ],
             "occasions": [
                 "easter"
@@ -28906,7 +28912,9 @@
             ],
             "diets": [
                 "gluten free",
-                "lacto ovo vegetarian"
+                "lacto ovo vegetarian",
+                "vegetarian",
+                "vegan"
             ],
             "occasions": [
                 "fall",
@@ -40466,7 +40474,8 @@
                 "gluten free",
                 "dairy free",
                 "lacto ovo vegetarian",
-                "vegan"
+                "vegan",
+                "vegetarian"
             ],
             "occasions": [
                 "father's day",

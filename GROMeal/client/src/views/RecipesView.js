@@ -197,12 +197,6 @@ function RecipesView(props){
         setFilteredRecipes(recipes)
         setSearch((search) => ({...search, dishType: "", cuisines: "", diets: ""}));
     }
-
-    //DRAGGABLE MENU
-    const handleDragEnd = (event) => {
-        setX(event.clientX);
-        setY(event.clientY);
-        };
     
     //ARRAYS NEEDED FOR DROPDOWNS
     let weekDayArray = ['monday', 'tuesday', 'wednesday', 'thursday', "friday", "saturday", "sunday"];
@@ -212,25 +206,14 @@ function RecipesView(props){
     let diets = ["vegan","vegetarian","gluten free","dairy free","lacto ovo vegetarian"];
 
     
-    // console.log(recipes.dishTypes)
+    console.log(recipes.dishTypes)
     let recipeSteps = featRecipe && featRecipe.analyzedInstructions[0].steps;
 
 
     return (
-        <div className="row p-0 m-0">
-
-           <div className="card pt-5 pb-5 align-items-center" id="searchBar"> 
-
-           <div className="container justify-content-between">
-           <div
-                // draggable
-                // onDragEnd = {handleDragEnd}
-                // style={{
-                //         position: "absolute",
-                //         left: x,
-                //         top: y
-                // }}
-           >
+    <div className="row p-0 m-0">
+        <div className="card pt-5 pb-5 align-items-center" id="searchBar"> 
+            <div className="container justify-content-between">
                 <div className="row col-12 mx-auto">
                     <div className="col-2 mx-auto">
                         <NavLink id="backNext" className='col' to="/">
@@ -243,14 +226,11 @@ function RecipesView(props){
                             NEXT
                         </NavLink>
                     </div>
-
                 </div>
-                </div>
-                </div>
-           
-           <div className='col-9 align-items-left'>
-            <h1 className="pb-3 pt-5" id="title">Select your favorite meals</h1>           
-            <form className="row form-group d-flex justify-content-left" onSubmit={ handleSearchSubmit }>
+            </div>
+            <div className='col-9 align-items-left'>
+                <h1 className="pb-3 pt-5" id="title">Select your favorite meals</h1>           
+                <form className="row form-group d-flex justify-content-left" onSubmit={ handleSearchSubmit }>
                     <label className="col-4">
                         Dish type
                         <select className = "form-select form-select-md" name='dishType' id="selected" value={search.dishType}
@@ -286,108 +266,79 @@ function RecipesView(props){
                             )) }
                         </select>
                     </label>
-            <div className="mt-2 mb-5">
-            <button className='col-2 btn btn-lg' id="buttonA">SEARCH</button>
-            <button className='col-2 btn btn-lg mx-2' id="buttonA" onClick={ clearSearch }>CLEAR ALL</button>
+                    <div className="mt-2 mb-5">
+                        <button className='col-2 btn btn-lg' id="buttonA">SEARCH</button>
+                        <button className='col-2 btn btn-lg mx-2' id="buttonA" onClick={ clearSearch }>CLEAR ALL</button>
+                    </div>
+                </form>
             </div>
-            </form>
-            </div>
-        </div>
-        
-            <div className="gridFeat">
+        </div>  
+        <div className="gridFeat">
             {featRecipe && <div id={featRecipe.id} className= { featVisible ? "invisible" : 'visible' }> 
-                <div className="featBlock px-4" style={{maxHeight: '400px'}}>
-                    <img src={featRecipe.image} alt="recipe" className="featImage"></img>
+            <div className="featBlock px-4">
+                <img src={featRecipe.image} alt="recipe" className="featImage"></img>
+                <div>
                     <div className="featLegend">
                         <h3 className="featLegendText">{featRecipe.title}</h3>
                         <h4 className="featLegendText">Ready in: {featRecipe.readyInMinutes} min</h4>
                         
-                        <ol className="featText" style={{maxWidth: '550px', maxHeight: '300px'}}>
+                        <ol className="featText">
                             {
                                 recipeSteps.map(steps =>
                                 <li>{steps.step}</li>
                                     )
                             }
                         </ol>
-                        <div>
-                    
-    <form className="col-11 pb-5 mt-3 align-items-center" onSubmit = {handleSubmit}>
-    <h5 className="featLegend" style={{fontWeight: 'bold'}}>I want to eat this meal on :</h5>
-        <div className="featLegendform">
-            <label className="col">
-                Select a day
-                <select required className ="form-select form-select-md" name='week_day' id="selected" value={addedRecipe.week_day}
-                    onChange = { handleChange }
-                    >
-                    <option selected id="editOptions" value={""}></option> 
-                    { weekDayArray.map(day => (
-                        <option id="editOptions" value={day}>{day}</option>
-                    )) }
-
-                </select>
-            </label>
-            {addedRecipe.week_day && <label className="col">
-                Select a meal
-                <select required className = "form-select form-select-md" name='meal_type' id="selected" value={addedRecipe.meal_type}
-                    onChange = { handleChange }
-                    >
-                    <option selected id="editOptions" value={""}></option> 
-                    { mealType.map(meal => (
-                        <option id="editOptions" value={meal}>{meal}</option>
-                    )) }
-
-                </select>
-            </label>}
-            {addedRecipe.meal_type &&<label className="col">
-                Serving
-                <input className = "form-control form-control-md" type="number" id="serving" name="servings" value={addedRecipe.servings}
-                min="1"
-                onChange = { handleChange }
-                ></input>
-            </label>}
-
-            
-        </div>
-        <div className="d-flex justify-content-right">
-        <label className="col">
-                <button id="buttonA" className="col btn btn-md mt-1">
-                    ADD RECIPE
-                </button>
-            </label>
-        </div>
-        <div>
-            
-        </div>
-
-    </form>
-</div>
-                        
                     </div>
-                    
+                    <div>
+                        <form className="col-11 pb-5 mt-3 align-items-center" onSubmit = {handleSubmit}>
+                            <h5 className="featLegend">I want to eat this meal on :</h5>
+                            <div className="featLegendform">
+                                <label className="col">
+                                    Select a day
+                                    <select required className ="form-select form-select-md" name='week_day' id="selected" value={addedRecipe.week_day}
+                                        onChange = { handleChange }
+                                        >
+                                        <option selected id="editOptions" value={""}></option> 
+                                        { weekDayArray.map(day => (
+                                            <option id="editOptions" value={day}>{day}</option>
+                                        )) }
+                                    </select>
+                                </label>
+                                    {addedRecipe.week_day && <label className="col">
+                                    Select a meal
+                                    <select required className = "form-select form-select-md" name='meal_type' id="selected" value={addedRecipe.meal_type}
+                                        onChange = { handleChange }
+                                        >
+                                        <option selected id="editOptions" value={""}></option> 
+                                        { mealType.map(meal => (
+                                            <option id="editOptions" value={meal}>{meal}</option>
+                                        )) }
+                                    </select>
+                                </label>}
+                                    {addedRecipe.meal_type &&<label className="col">
+                                    Serving
+                                    <input className = "form-control form-control-md" type="number" id="serving" name="servings" value={addedRecipe.servings}
+                                    min="1"
+                                    onChange = { handleChange }
+                                    ></input>
+                                </label>}
+                            </div>
+                            <div className="d-flex justify-content-right">
+                                <label className="col">
+                                    <button id="buttonA" className="col btn btn-md mt-1">
+                                        ADD RECIPE
+                                    </button>
+                                </label>
+                            </div>
+                        </form>
 
+                    </div>
                 </div>
             </div>
-                }    
-
-<div>
-    <ToastContainer
-            position="//#region"
-            autoClose={10}
-            hideProgressBar
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="dark"
-            />   
-             
-</div>
-                               
-
-
-            <div className="gridContainer">            
+        </div>
+        }                               
+        <div className="gridContainer">            
             <div id="recipesGrid"className="m-0 px-4 mt-4">
                 {
                 filteredRecipes.map(recipe => (
@@ -398,25 +349,14 @@ function RecipesView(props){
                             {/* <h6 className="imageLeg">Ready in: {recipe.readyInMinutes} min</h6> */}
                         </div>
                     </div>
-                ))
-            }
-
+                    ))
+                }
             </div>
-            </div>
-            </div>
-          
-
-            </div>
+        </div>
+    </div> 
+    </div>
             
     );
-
-
-
-
-
 }
-
-
-
 
 export default RecipesView;

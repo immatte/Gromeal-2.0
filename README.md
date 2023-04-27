@@ -1,3 +1,23 @@
+## GREENGRAB APP
+
+GrenGrab is an app that aims to be a sustainable tool, to avoid food waste, as to plan and organize your weekly meals and provide a shopping list with all the needed ingredients(including total quantity).
+
+## Features:
+
+- Create a meal Plan for your week
+1. Add meals
+     - Filter the meal search by : 
+          -> Dish type (Soup, dessert, breakfast, lunch, snack, etc)
+          -> Cuisine (Italian, French, etc)
+          -> Diet type (Gluten free, vegetarian, vegan, etc)
+     - Browse the meal's recipes
+     - Select a recipe to check the details : Ingredients, Preparation steps and preparation time
+     - Select the day, the meal(breakfast, lunch or dinner) and Serving(Number of persons)
+     - add the recipe to your week
+
+2. Edit your Weekly Plan
+- Create an account to personalize your plans and recover a previous week plan created
+
 ## Setup
 
 ### Dependencies
