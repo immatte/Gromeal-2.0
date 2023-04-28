@@ -188,8 +188,11 @@ function RecipesView(props){
     let diets = ["vegan","vegetarian","gluten free","dairy free","lacto ovo vegetarian"];
 
     
-    console.log(featRecipe.extendedIngredients);
     let recipeSteps = featRecipe && featRecipe.analyzedInstructions[0].steps;
+    let recipeIngredients = featRecipe && featRecipe.extendedIngredients;
+    // console.log(featRecipe.analyzedInstructions[0].steps);
+    // console.log(recipeIngredients);
+    
 
 
     return (
@@ -268,6 +271,14 @@ function RecipesView(props){
                             {
                                 recipeSteps.map(steps =>
                                 <li>{steps.step}</li>
+                                    )
+                            }
+                        </ol>
+                        <h5 className="featLegend">Ingredients</h5>
+                        <ol className="featIngredients">
+                            {
+                                recipeIngredients.map(ingredient =>
+                                <li>{ingredient.name}</li>
                                     )
                             }
                         </ol>

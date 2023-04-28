@@ -59,35 +59,24 @@ function App() {
     useEffect(() => {
         getUserPlans();
       }, []);
-    
-    // Get All plans of the app
-//     async function getPlans() {
-  
-//     try {
-//       let response = await fetch(`/api/allplans`);
-//       if (response.ok) {
-//           let plans = await response.json();
-//           setPlans(plans);
-//           console.log(plans);
-//       } else {
-//           console.log(`Server error: ${response.status} ${response.statusText}`);
-//       }
-//   } catch (err) {
-//       console.log(`Server error: ${err.message}`);
-//   }
-//   }
 
     //WORKING 
     //FUNCTION TO CLICK ON RECIPE, VISUALIZE RECIPE ON TOP & ADDS RECIPE'S DATA TO CONST addedRecipe
     function showFeatRecipe(id){
         let selectedRecipe = recipes.find(r => r.id === id);
         setFeatRecipe(selectedRecipe);
-        // const [reloadRecipe, setReloadRecipes] = useState([]);
-        // console.log(selectedRecipe.title);
+        // let ingredients = selectedRecipe.extendedIngredients;
+        // let ingredientList = []
+        // console.log(ingredients);
+        // console.log(ingredients[0].name);
+        // for(let i=0; i<= ingredients.length; i++){
+        //     // console.log(ingredients[i].name)
+        //     ingredientList += ingredients[i].name;
+        //     // console.log(ingredientList);
+        // }
+        // console.log(ingredientList);
         setAddedRecipe((addedRecipe) => ({...addedRecipe, API_id: selectedRecipe.id, recipe_title: selectedRecipe.title, recipe_image: selectedRecipe.image}));
     };
-    
-    
     
     async function doLogin(username, password) {
         let myresponse = await Api.loginUser(username, password);

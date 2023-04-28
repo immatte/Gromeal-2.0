@@ -46,6 +46,11 @@ h5.featLegend{
     cursor: pointer;
 }
 
+.featIngredients{
+    text-transform: capitalize;
+    font-size: 90%;
+}
+
 /* 02 RECIPES GRID */
 #recipesGrid{
     display: grid;
