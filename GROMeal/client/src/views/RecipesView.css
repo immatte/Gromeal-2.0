@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Comme:wght@300&display=swap');
+
 /* 01 RECIPE FEATURE */
 
 .visible{
@@ -30,15 +32,18 @@ h5.imageLeg {
 
 .featLegend{
     padding-top: 20px;
-    font-family:'Courier New', Courier, monospace;
+    font-family: 'Comme', sans-serif;
 }
 
 h3.featLegendText{
+    font-size: 300%;
     font-weight: bold;
+    font-family: 'Comme', sans-serif;
 }
 
 h5.featLegend{
     font-weight: bold;
+    font-family: 'Comme', sans-serif;
 }
 
 .form-select{
@@ -49,6 +54,7 @@ h5.featLegend{
 .featIngredients{
     text-transform: capitalize;
     font-size: 90%;
+    font-family: 'Comme', sans-serif;
 }
 
 /* 02 RECIPES GRID */

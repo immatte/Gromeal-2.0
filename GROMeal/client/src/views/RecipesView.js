@@ -196,6 +196,7 @@ function RecipesView(props){
 
 
     return (
+    
     <div className="row p-0 m-0">
         <div className="card pt-5 pb-5 align-items-center" id="searchBar"> 
             <div className="container justify-content-between">
@@ -323,6 +324,18 @@ function RecipesView(props){
                                         ADD RECIPE
                                     </button>
                                 </label>
+                                <ToastContainer
+                                    position="//#region"
+                                    autoClose={10}
+                                    hideProgressBar
+                                    newestOnTop={false}
+                                    closeOnClick
+                                    rtl={false}
+                                    pauseOnFocusLoss
+                                    draggable
+                                    pauseOnHover
+                                    theme="dark"
+                                />   
                             </div>
                         </form>
 
