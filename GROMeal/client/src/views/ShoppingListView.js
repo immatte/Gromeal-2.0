@@ -1,21 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, useParams, Route, Routes, useNavigate } from 'react-router-dom';
 import SpoonApi from "../helpers/SpoonApi";
-
+// import RecipesContext from "../components/RecipesContext";
+// import { useContext } from "react";
 import ProgressBar from '../components/ProgressBar';
 
 
 import Api from '../helpers/Api';
 import { jsPDF } from "jspdf";
-
-
-const API_KEY = "5e24157871f640c684861272be1907c9";
-const ISA_KEY = "0fe1d39b2dbf4cb5a8737ca807512217";
-const ANAMARI_KEY = "ed26cdd2c2ed48398cc8d8d88a1b8782";
-const ANAMARI_KEY2 = "02d7327dca734133ac458e767e8373b3";
-const ANAMARI_KEY3 = "44cd6e5f97844750bb59d8bb5f69370d";
-const ANAMARI_KEY4 = "2249a308392d4fefb388c16c01db781a";
-
 
 function ShoppingListView() {
 
@@ -24,6 +16,8 @@ function ShoppingListView() {
     const [ingredients, setIngredients] = useState([]);
     // const [pdf, setPdf] = useState(null);
     const { planId } = useParams();
+    // const {recipes, setRecipes, setPlanRecipes, editingRecipeId, setEditingRecipeId, featVisible, setfeatVisible, showFeatRecipe, setAddedRecipe, featRecipe, addedRecipe, setFeatRecipe } = useContext(RecipesContext);
+
   
     useEffect(() => {
         getRandomRecipes();
@@ -69,21 +63,33 @@ function ShoppingListView() {
       console.log(`Server error: ${err.message}`);
   }
   }
-console.log(planRecipes);
+  console.log(recipes)
+  console.log(planRecipes)
+
   //planRecipes es un array de objetos
 
+  // get ingredients by the id of each recipe
+  const getIngredients = async () => {
+      let recipeIngredient =  planRecipes.map(ingredient => ingredient.name)
 
-// get original servings of each plan recipe
+      // setIngredients((recipeIngredient) => ({...recipeIngredient, name: [name], week_day: "", servings: 1}));
+  };
 
-// function findServings(recipeName) {
-//   const recipe = recipes[recipeName];
-//   let totalServings = recipe.servings;
-//   for (const ingredient in recipe.ingredients) {
-//     const amount = recipe.ingredients[ingredient].amount;
-//     const servingSize = recipe.ingredients[ingredient].servingSize;
-//     totalServings *= amount / servingSize;
-//   }
-//   return totalServings;
+
+  
+  
+  // get original servings of each plan recipe
+  
+//   function findServings(recipeName) {
+//     const recipe = recipes[recipeName];
+//     let totalServings = recipe.servings;
+//     for (const ingredient in recipe.ingredients) {
+//       const amount = recipe.ingredients[ingredient].amount;
+//       const servingSize = recipe.ingredients[ingredient].servingSize;
+//       totalServings *= amount / servingSize;
+//     }
+//     console.log(totalServings);
+//     return totalServings;
 // }
 
 // 
@@ -103,9 +109,9 @@ console.log(planRecipes);
   // };
 // ingredients también es un array de objetos 
 // Cada objeto se llama ingredients y es otro array de objetos
-console.log(ingredients);
+// console.log(recipes);
 // console.log(ingredients);
-// const shoppingList = []
+const shoppingList = []
     
 //             for (let i = 0; i < ingredients.length; i++) {
 //                 let array = ingredients[i].ingredients;
@@ -126,35 +132,35 @@ console.log(ingredients);
 
 
 
-        const shoppingList = [{id: 1, item_name: 'canned corn', amount: 425.243, unit: 'g'},
-        {id: 2, item_name: 'canned black beans', amount: 425.243, unit: 'g'},
-        {id: 3, item_name: 'sweet diced canned tomatoes', amount: 411.068, unit: 'g'}, 
-        {id: 4, item_name: 'canned swanson premium chicken', amount: 170.097, unit: 'g'},
-        {id: 5, item_name: 'canned enchilada sauce', amount: 283.495, unit: 'g'},
-        {id: 6, item_name: "canned campbell's cream of mushroom soup", amount: 304.757, unit: 'g'},
-        {id: 7, item_name: 'milk', amount: 366, unit: 'ml'},
-        {id: 8, item_name: 'tortilla chips', amount: 4, unit: 'servings'}, 
-        {id: 9, item_name: 'shredded cheese', amount: 4, unit: 'servings'}, 
-        {id: 10, item_name: 'canned corn', amount: 425.243, unit: 'g'}, 
-        {id: 11, item_name: 'canned black beans', amount: 425.243, unit: 'g'}, 
-        {id: 12, item_name: 'sweet diced canned tomatoes', amount: 411.068, unit: 'g'}, 
-        {id: 13, item_name: 'canned swanson premium chicken', amount: 170.097, unit: 'g'}, 
-        {id: 14, item_name: 'canned enchilada sauce', amount: 283.495, unit: 'g'}, 
-        {id: 15, item_name: "canned campbell's cream of mushroom soup", amount: 304.757, unit: 'g'}, 
-        {id: 16, item_name: 'milk', amount: 366, unit: 'ml'}, 
-        {id: 17, item_name: 'tortilla chips', amount: 4, unit: 'servings'}, 
-        {id: 18, item_name: 'shredded cheese', amount: 4, unit: 'servings'}, 
-        {id: 19, item_name: 'canned cherry pie filling', amount: 236.588, unit: 'ml'}, 
-        {id: 20, item_name: 'cocoa powder', amount: 3, unit: 'Tbsps'}, 
-        {id: 21, item_name: 'cream cheese', amount: 1.5, unit: 'pkg'}, 
-        {id: 22, item_name: 'eggs', amount: 2, unit: ''}, 
-        {id: 23, item_name: 'gelatin', amount: 0.571, unit: 'tsps'}, 
-        {id: 24, item_name: 'heavy cream', amount: 238, unit: 'ml'}, 
-        {id: 25, item_name: 'oreo cookies', amount: 12, unit: ''}, 
-        {id: 26, item_name: 'powdered sugar', amount: 2, unit: 'Tbsps'}, 
-        {id: 27, item_name: 'salt', amount: 1, unit: 'tsp'}, 
-        {id: 28, item_name: 'semi-sweet chocolate chips', amount: 131.25, unit: 'ml'}, 
-        {id: 29, item_name: 'sour cream', amount: 57.5, unit: 'ml'}]
+        // const shoppingList = [{id: 1, item_name: 'canned corn', amount: 425.243, unit: 'g'},
+        // {id: 2, item_name: 'canned black beans', amount: 425.243, unit: 'g'},
+        // {id: 3, item_name: 'sweet diced canned tomatoes', amount: 411.068, unit: 'g'}, 
+        // {id: 4, item_name: 'canned swanson premium chicken', amount: 170.097, unit: 'g'},
+        // {id: 5, item_name: 'canned enchilada sauce', amount: 283.495, unit: 'g'},
+        // {id: 6, item_name: "canned campbell's cream of mushroom soup", amount: 304.757, unit: 'g'},
+        // {id: 7, item_name: 'milk', amount: 366, unit: 'ml'},
+        // {id: 8, item_name: 'tortilla chips', amount: 4, unit: 'servings'}, 
+        // {id: 9, item_name: 'shredded cheese', amount: 4, unit: 'servings'}, 
+        // {id: 10, item_name: 'canned corn', amount: 425.243, unit: 'g'}, 
+        // {id: 11, item_name: 'canned black beans', amount: 425.243, unit: 'g'}, 
+        // {id: 12, item_name: 'sweet diced canned tomatoes', amount: 411.068, unit: 'g'}, 
+        // {id: 13, item_name: 'canned swanson premium chicken', amount: 170.097, unit: 'g'}, 
+        // {id: 14, item_name: 'canned enchilada sauce', amount: 283.495, unit: 'g'}, 
+        // {id: 15, item_name: "canned campbell's cream of mushroom soup", amount: 304.757, unit: 'g'}, 
+        // {id: 16, item_name: 'milk', amount: 366, unit: 'ml'}, 
+        // {id: 17, item_name: 'tortilla chips', amount: 4, unit: 'servings'}, 
+        // {id: 18, item_name: 'shredded cheese', amount: 4, unit: 'servings'}, 
+        // {id: 19, item_name: 'canned cherry pie filling', amount: 236.588, unit: 'ml'}, 
+        // {id: 20, item_name: 'cocoa powder', amount: 3, unit: 'Tbsps'}, 
+        // {id: 21, item_name: 'cream cheese', amount: 1.5, unit: 'pkg'}, 
+        // {id: 22, item_name: 'eggs', amount: 2, unit: ''}, 
+        // {id: 23, item_name: 'gelatin', amount: 0.571, unit: 'tsps'}, 
+        // {id: 24, item_name: 'heavy cream', amount: 238, unit: 'ml'}, 
+        // {id: 25, item_name: 'oreo cookies', amount: 12, unit: ''}, 
+        // {id: 26, item_name: 'powdered sugar', amount: 2, unit: 'Tbsps'}, 
+        // {id: 27, item_name: 'salt', amount: 1, unit: 'tsp'}, 
+        // {id: 28, item_name: 'semi-sweet chocolate chips', amount: 131.25, unit: 'ml'}, 
+        // {id: 29, item_name: 'sour cream', amount: 57.5, unit: 'ml'}]
         // {id: 30, item_name: 'sugar', amount: 133.333, unit: 'g'}, 
         // {id: 31, item_name: 'unsalted butter', amount: 1.521, unit: 'Tbsps'}, 
         // {id: 32, item_name: 'vanilla extract', amount: 0.323, unit: 'tsps'}, 

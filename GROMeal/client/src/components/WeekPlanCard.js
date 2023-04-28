@@ -18,14 +18,14 @@ function handleClick(recipe) {
     setEditingRecipeId(id);
     navigate(`/recipes/${plan_id}`);
 }
- 
+console.log(recipe)
 return (
     <div id="WPcard"className="row p-0 m-0" key={recipe.id} title="Click here to modify">
         
         <p className="d-flex flex-row-reverse p-0 m-0"><button id="deleteButtonRecipe" className="col-2 btn btn-danger" onClick={(e) => props.deleteRecipe(recipe.id)} title="delete" type="button"> X </button></p>
         <div className="m-0 p-0 row" id="WPcard" onClick={e => handleClick(recipe)}>
         <p className="col colWP" id="titleRec">{recipe.recipe_title}</p>
-        <img className="col " id="recImg" src={recipe.recipe_image} /> 
+        <img className="col " id="recImg" src={recipe.recipe_image}/> 
         </div>       
         <div>
         </div>     

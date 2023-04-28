@@ -110,7 +110,7 @@ function RecipesView(props){
     };
 
 
-    console.log(addedRecipe.week_day);
+    // console.log(addedRecipe.week_day);
 
     //WHEN SUBMITTING FORM -> ADD RECIPE
     const handleSubmit = event => {
