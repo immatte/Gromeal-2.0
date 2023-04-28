@@ -31,8 +31,6 @@ function RecipesView(props){
     const { planId } = useParams();
     //const [featVisible, setfeatVisible] = useState(true);
     const [search, setSearch] = useState(EMPTY_SEARCH);
-    const [x, setX] = useState(0);
-    const [y, setY] = useState(0);
     const [filteredRecipes, setFilteredRecipes] = useState([]);
     const {recipes, setRecipes, setPlanRecipes, editingRecipeId, setEditingRecipeId, featVisible, setfeatVisible, showFeatRecipe, setAddedRecipe, featRecipe, addedRecipe, setFeatRecipe } = useContext(RecipesContext);
 
@@ -99,29 +97,18 @@ function RecipesView(props){
     }
 
    
-    
-    //WORKING
+    //MAKE VISIBLE RECIPE DETAILS WHEN CLICKING ON A RECIPE FROM THE GRID
     const handleChangeView = (featVisible) => {
         setfeatVisible(featVisible);
       };
 
     //FORM INPUT
     const handleChange = event => {
-        // console.log(event.target.id)
         let  value  = event.target.value;
-        // console.log(value)
         let name = event.target.name;
         setAddedRecipe((addedRecipe) => ({...addedRecipe, [name]: value}));
-        // getRecipes(planRecipes)
-        // if(planRecipes.)
     };
-    
-    // console.log(planRecipes[0].week_day)
 
-    // for(let recipe of planRecipes){
-    //     console.log(recipe)
-
-    // }
 
     console.log(addedRecipe.week_day);
 
@@ -145,7 +132,6 @@ function RecipesView(props){
             
         } else {        
         addRecipe(addedRecipe);
-        // console.log('hello')
         let message = `Successfully added! : ${addedRecipe.servings} portions on ${addedRecipe.week_day} at ${addedRecipe.meal_type}`
         toast(message, {
             position: "bottom-right",
@@ -164,10 +150,7 @@ function RecipesView(props){
     
     //SEARCH INPUT
     const handleSearchChange = event => {
-        // console.log(event.target.id)
-    
         let  value  = event.target.value;
-        console.log(value)
         let name = event.target.name;
         
         setSearch((search) => ({...search, [name]: value}));
@@ -176,8 +159,7 @@ function RecipesView(props){
     
     // WHEN SUBMITTING ON SEARCH BAR
     const handleSearchSubmit = event => {
-        event.preventDefault();     
-        // console.log("hello")
+        event.preventDefault(); 
         let newGrid = recipes;
         if(search.dishType){
             newGrid = newGrid.filter(recipe => recipe.dishTypes.includes(search.dishType));
@@ -206,7 +188,7 @@ function RecipesView(props){
     let diets = ["vegan","vegetarian","gluten free","dairy free","lacto ovo vegetarian"];
 
     
-    console.log(recipes.dishTypes)
+    console.log(featRecipe.extendedIngredients);
     let recipeSteps = featRecipe && featRecipe.analyzedInstructions[0].steps;
 
 
