@@ -43,10 +43,15 @@ function ShoppingListView() {
     //     getIngredients();
     //   }, [planRecipes]);
 
-    
 
   //Get all recipes of the json
   //Find the API_id for each planRecipe
+      //FUNCTION TO CLICK ON RECIPE, VISUALIZE RECIPE ON TOP & ADDS RECIPE'S DATA TO CONST addedRecipe
+    //   function showIngredients(id){
+    //     let ingredient = recipes.find(r => r.id === id);
+    //     setFeatRecipe(selectedRecipe);
+    //     setAddedRecipe((addedRecipe) => ({...addedRecipe, API_id: selectedRecipe.id, recipe_title: selectedRecipe.title, recipe_image: selectedRecipe.image}));
+    // };
   
   // Get All recipes from a plan
   async function getPlanRecipes() {
@@ -65,20 +70,27 @@ function ShoppingListView() {
   }
   console.log(recipes)
   console.log(planRecipes)
+  console.log(planRecipes[0].API_id)
 
   //planRecipes es un array de objetos
 
   // get ingredients by the id of each recipe
-  const getIngredients = async () => {
-      let recipeIngredient =  planRecipes.map(ingredient => ingredient.name)
-
-      // setIngredients((recipeIngredient) => ({...recipeIngredient, name: [name], week_day: "", servings: 1}));
-  };
-
-
+  // const getIngredients = async () => {
+  //     let recipeId =  planRecipes.map(recipe => recipe.API_id)
+  //     let recipesIngredients = [];
+  //     for(let i=0; i<=recipeId.length; i++){
+  //       let foundRecipe = recipes.find(r => r.id === recipeId);
+  //       let recipeIngredient = foundRecipe.extendedIngredients
+  //       recipeIngredient =  recipeIngredient.map(ingredient => ({...recipeIngredient, name: ingredient.name}))
+  //       recipesIngredients+=recipeIngredient;
+  //     }
+  //     console.log(recipesIngredients)
+  // //     // setIngredients((recipeIngredient) => ({...recipeIngredient, name: [name], week_day: "", servings: 1}));
+  // };
   
-  
-  // get original servings of each plan recipe
+  // getIngredients()
+
+// get original servings of each plan recipe
   
 //   function findServings(recipeName) {
 //     const recipe = recipes[recipeName];
@@ -91,9 +103,6 @@ function ShoppingListView() {
 //     console.log(totalServings);
 //     return totalServings;
 // }
-
-// 
-
 
 // get ingredients by the id of each recipe
   // const getIngredients = async () => {

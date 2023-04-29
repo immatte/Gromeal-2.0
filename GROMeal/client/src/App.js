@@ -60,7 +60,6 @@ function App() {
         getUserPlans();
       }, []);
 
-    //WORKING 
     //FUNCTION TO CLICK ON RECIPE, VISUALIZE RECIPE ON TOP & ADDS RECIPE'S DATA TO CONST addedRecipe
     function showFeatRecipe(id){
         let selectedRecipe = recipes.find(r => r.id === id);
