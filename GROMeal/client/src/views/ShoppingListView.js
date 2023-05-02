@@ -99,13 +99,13 @@ function ShoppingListView() {
       for(let i=0; i<=recipeId.length; i++){
         let foundRecipe = recipes.find(r => r.id === recipeId[i].id);
         let recipeIngredient = foundRecipe.extendedIngredients
-        recipeIngredient =  recipeIngredient.map(ingredient => ({name: ingredient.name, amount: ingredient.measures.metric.amount * recipeId[i].servings, unit: ingredient.measures.metric.unitShort}));
+        recipeIngredient =  recipeIngredient.map(ingredient => ({item_name: ingredient.name, amount: ingredient.measures.metric.amount * recipeId[i].servings, unit: ingredient.measures.metric.unitShort}));
         console.log(recipeIngredient)
         //create a variable with current ingredient name value
         let prevIngredient = "";
         for(let i=0; i<recipeIngredient.length; i++){
           //create a variable with previous ingredient name value
-          let currIngredient = recipeIngredient[i].name;
+          let currIngredient = recipeIngredient[i].item_name;
           //if the current and previous value is equal, add up the amount
           if(currIngredient !== prevIngredient){
             recipesIngredients.push(recipeIngredient[i]);
@@ -333,7 +333,7 @@ const shoppingList = []
             //             </div> */}
             //             <div className='col-6 px-5'>
                             
-            //                 {item.name}
+            //                 {item.item_name}
             //             </div>
             //             <div className='col-3'>
             //                 {Math.round(item.amount)}
@@ -361,7 +361,7 @@ const shoppingList = []
                         </div> */}
                         <div className='col-6 px-5'>
                             
-                            {item.name}
+                            {item.item_name}
                         </div>
                         <div className='col-3'>
                             {Math.round(item.amount)}

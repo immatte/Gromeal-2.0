@@ -26,15 +26,17 @@ router.get("/:planId", async function(req, res, next) {
  //POST A NEW ITEM
  router.post("/:planId", async (req, res, next) => {
   let list = req.body;
+  console.log(list);
   let planId = req.params.planId;
-  let sql = `INSERT INTO list (item_name, amount, unit, plan_id)
-  VALUES `
-    for (let i = 0; i < list.length; i++) {
-    if (i === list.length-1) {
-    sql += `("${list[i].item_name}", ${list[i].amount}, "${list[i].unit}", ${planId});`;
-    } else {
-    sql += `("${list[i].item_name}", ${list[i].amount}, "${list[i].unit}", ${planId}), `;
-    }
+  // let sql = `INSERT INTO list (item_name, amount, unit, plan_id) VALUES ("${list.item_name}", ${list.amount}, "${list.unit}", ${planId});`
+  let sql = `INSERT INTO list (item_name, amount, unit, plan_id) VALUES`
+  for (let i = 0; i < list.length; i++) {
+      sql += `("${list[i].item_name}", ${list[i].amount}, "${list[i].unit}", ${planId});`;
+      // if (i === list.length-1) {
+      // sql += `("${list[i].item_name}", ${list[i].amount}, "${list[i].unit}", ${planId});`;
+      // } else {
+      // sql += `("${list[i].item_name}", ${list[i].amount}, "${list[i].unit}", ${planId}), `;
+      // }
   }
   console.log(sql);
   
