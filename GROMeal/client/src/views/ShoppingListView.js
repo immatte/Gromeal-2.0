@@ -13,6 +13,8 @@ function ShoppingListView() {
 
     const [recipes, setRecipes] = useState([]);
     const [planRecipes, setPlanRecipes] = useState([]);
+    const [recipesIngredients, setRecipesIngredients] = useState([]);
+    const [addedItem, setAddedItem] = useState([]);
     const [ingredients, setIngredients] = useState([]);
     // const [pdf, setPdf] = useState(null);
     const { planId } = useParams();
@@ -39,9 +41,9 @@ function ShoppingListView() {
       getPlanRecipes();
     }, []);
 
-    // useEffect(() => {
-    //     getIngredients();
-    //   }, [planRecipes]);
+    useEffect(() => {
+        getIngredients();
+      }, [planRecipes]);
 
 
   //Get all recipes of the json
@@ -68,27 +70,60 @@ function ShoppingListView() {
       console.log(`Server error: ${err.message}`);
   }
   }
-  console.log(recipes)
-  console.log(planRecipes)
-  console.log(planRecipes[0].API_id)
+  // console.log(recipes)
+  // console.log(planRecipes)
+  // console.log(planRecipes[0].API_id)
+  // console.log(planRecipes[0].servings)
+  // console.log(planRecipes.length)
 
   //planRecipes es un array de objetos
 
-  // get ingredients by the id of each recipe
-  // const getIngredients = async () => {
-  //     let recipeId =  planRecipes.map(recipe => recipe.API_id)
-  //     let recipesIngredients = [];
-  //     for(let i=0; i<=recipeId.length; i++){
+  // let recipeId =  planRecipes.map(recipe => recipe.API_id)
+  // console.log(recipeId)
+  // let recipesIngredients = [];
+  // for(let i=0; i<=recipeId.length; i++){
   //       let foundRecipe = recipes.find(r => r.id === recipeId);
   //       let recipeIngredient = foundRecipe.extendedIngredients
   //       recipeIngredient =  recipeIngredient.map(ingredient => ({...recipeIngredient, name: ingredient.name}))
   //       recipesIngredients+=recipeIngredient;
   //     }
-  //     console.log(recipesIngredients)
-  // //     // setIngredients((recipeIngredient) => ({...recipeIngredient, name: [name], week_day: "", servings: 1}));
-  // };
-  
+  // console.log(recipesIngredients)
+
+  // get ingredients by the id of each recipe
+  const getIngredients = async () => {
+      //getting only id and servings from planRecipes
+      let recipeId =  planRecipes.map(recipe => ({id: recipe.API_id, servings: recipe.servings}))
+      console.log(recipeId)
+      let recipesIngredients = [];
+      //loop to find the planRecipes ID within recipes, as to extract ingredient details
+      for(let i=0; i<=recipeId.length; i++){
+        let foundRecipe = recipes.find(r => r.id === recipeId[i].id);
+        let recipeIngredient = foundRecipe.extendedIngredients
+        recipeIngredient =  recipeIngredient.map(ingredient => ({name: ingredient.name, amount: ingredient.measures.metric.amount * recipeId[i].servings, unit: ingredient.measures.metric.unitShort}));
+        console.log(recipeIngredient)
+        //create a variable with current ingredient name value
+        let prevIngredient = "";
+        for(let i=0; i<recipeIngredient.length; i++){
+          //create a variable with previous ingredient name value
+          let currIngredient = recipeIngredient[i].name;
+          //if the current and previous value is equal, add up the amount
+          if(currIngredient !== prevIngredient){
+            recipesIngredients.push(recipeIngredient[i]);
+            prevIngredient = currIngredient
+          } else{
+            recipeIngredient[i-1].amount = recipeIngredient[i-1].amount + recipeIngredient[i-1].amount;
+          }
+          // console.log(recipesIngredients);
+        }
+        setRecipesIngredients(recipesIngredients);
+      }
+      //     // setIngredients((recipeIngredient) => ({...recipeIngredient, name: [name], week_day: "", servings: 1}));
+      
+    };
+    let newList = recipesIngredients;
+    console.log(newList);
   // getIngredients()
+  // console.log(recipesIngredients);
 
 // get original servings of each plan recipe
   
@@ -190,19 +225,19 @@ const shoppingList = []
         // {id: 47, item_name: 'vanilla extract', amount: 0.323, unit: 'tsps'}, 
         // {id: 48, item_name: 'water', amount: 0.75, unit: 'cups'}]
 
-        //NEWLIST sum amounts when names match
+        //newList sum amounts when names match
         
-        let newList = Object.values(shoppingList.reduce((value, object) => {
-            if (value[object.item_name]) {
-              value[object.item_name].amount += object.amount; 
-              value[object.item_name].count++;
+        // let newList = Object.values(shoppingList.reduce((value, object) => {
+        //     if (value[object.item_name]) {
+        //       value[object.item_name].amount += object.amount; 
+        //       value[object.item_name].count++;
           
-          } else {
-              value[object.item_name] = { ...object , count : 1
-              };
-            }
-            return value;
-          }, {}));
+        //   } else {
+        //       value[object.item_name] = { ...object , count : 1
+        //       };
+        //     }
+        //     return value;
+        //   }, {}));
           
            //add an id to every item in the list
         //   for (let index = 0; index < newList.length; index++) {
@@ -214,25 +249,25 @@ const shoppingList = []
         
     
     //POST SHOPPING ITEMS TO THE LIST (when creating the plan¿?)
-    // const addItem = async (newList) => {
+    const addItem = async (newList) => {
     
-    //   try {
-    //       let response = await Api._doFetch(`/api/recipes/${planId}`, 'POST', newList);
-    //       console.log(response);
-    //       if (response.ok) {            
-    //           console.log('Recipe added!')
-    //       } else {
-    //           console.log(`Server error: ${response.status}:
-    //           ${response.statusText}`);
-    //       }
+      try {
+          let response = await Api._doFetch(`/api/recipes/${planId}`, 'POST', newList);
+          console.log(response);
+          if (response.ok) {            
+              console.log('Recipe added!')
+          } else {
+              console.log(`Server error: ${response.status}:
+              ${response.statusText}`);
+          }
           
-    //   } catch (err) {
-    //       console.log(`Network error: ${err.message}`);
-    //   }
+      } catch (err) {
+          console.log(`Network error: ${err.message}`);
+      }
     
-    // };
-
-    // Add every item (POST)
+    };
+    console.log(newList.length)
+    // // Add every item (POST)
     // for (let i = 0; i < newList.length; i++) {
     //   addItem(addedItem);
     //   setAddedItem((addedItem) => ({...addedItem, id: newList[i].id, item_name: `${newList[i].item_name}`, amount: newList[i].amount, unit: `${newList[i].unit}`}));
@@ -240,30 +275,15 @@ const shoppingList = []
     // console.log(addedItem);
 
 
-    //DELETE AN ITEM
-// async function deleteItem( id) {
-    // Define fetch() options
-//     let options = {
-//         method: 'DELETE'
-//     };
-  
-//     try {
-//         let response = await fetch(`/api/list/${planId}/${id}`, options);
-//         if (response.ok) {
-//             let items = await response.json();
-//             setAddedItem(items);
-//         } else {
-//             console.log(`Server error: ${response.status} ${response.statusText}`);
-//         }
-//     } catch (err) {
-//         console.log(`Server error: ${err.message}`);
-//     }
-//   }
+  //DELETE INGREDIENT
+  const deleteIngredient = event => {
+    console.log("hello")
+  }
           
     // DOWNLOAD FUNCTION
   let weekDayArray = ['monday', 'tuesday', 'wednesday', 'thursday', "friday", "saturday", "sunday"];
 
-  const downloadPdf = event =>{
+  const downloadPdf = event => {
     var doc = new jsPDF({
       // unit:"mm"
     });
@@ -302,8 +322,36 @@ const shoppingList = []
           <h1 className="col" id="title">My Shopping List</h1>
             <button id="buttonA" className="btn btn-warning btn-md col-4" onClick={downloadPdf}>DOWNLOAD</button>
             </div>
-            
+
             {
+            // recipesIngredients.map(item => (
+            //     <div className="card" key={item.id}>
+            //         <div className="row p-2">
+            //              {/* <div className='col-1' >
+                            
+            //                 {item.id}
+            //             </div> */}
+            //             <div className='col-6 px-5'>
+                            
+            //                 {item.name}
+            //             </div>
+            //             <div className='col-3'>
+            //                 {Math.round(item.amount)}
+            //             </div>
+                    
+            //             <div className='col-1'>
+                            
+            //                 {item.unit}
+            //             </div>
+            //             <div className="col-1 content-right">
+            //               <button id="buttonA" className="btn btn-warning btn-sm" title="delete" type="button" onClick = {deleteIngredient}>x</button>
+            //             </div>
+            //         </div>
+            //     </div>
+            // ))
+          }
+            
+          {
             newList.map(item => (
                 <div className="card" key={item.id}>
                     <div className="row p-2">
@@ -313,7 +361,7 @@ const shoppingList = []
                         </div> */}
                         <div className='col-6 px-5'>
                             
-                            {item.item_name}
+                            {item.name}
                         </div>
                         <div className='col-3'>
                             {Math.round(item.amount)}
@@ -324,12 +372,12 @@ const shoppingList = []
                             {item.unit}
                         </div>
                         <div className="col-1 content-right">
-                          <button id="buttonA" className="btn btn-warning btn-sm" title="delete" type="button">x</button>
+                          <button id="buttonA" className="btn btn-warning btn-sm" title="delete" type="button" onClick = {deleteIngredient} >x</button>
                         </div>
                     </div>
                 </div>
             ))
-        }
+          }
         </div>
     </div>
       </div>
