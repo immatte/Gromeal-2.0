@@ -45,6 +45,7 @@ function ShoppingListView() {
         getIngredients();
       }, [planRecipes]);
 
+   
 
   //Get all recipes of the json
   //Find the API_id for each planRecipe
@@ -155,130 +156,122 @@ function ShoppingListView() {
 // Cada objeto se llama ingredients y es otro array de objetos
 // console.log(recipes);
 // console.log(ingredients);
-const shoppingList = []
-    
-//             for (let i = 0; i < ingredients.length; i++) {
-//                 let array = ingredients[i].ingredients;
-//                 // console.log(ingredients);
-//                 for (let j = 0; j < array.length; j++) {
-//                     console.log(array);
-//                     let newObject = {}
-//                     // newObject.id = 0;
-//                     console.log(newObject.id);
-//                     newObject.item_name = array[j].name;
-//                     newObject.amount = array[j].amount.metric.value;
-//                     newObject.unit = array[j].amount.metric.unit;
-//                     console.log(newObject);
-//                     shoppingList.push(newObject);    
-//                 }
-//             }
-//             console.log(shoppingList);
 
+const shoppingList = [] 
+    //FETCH POST NEW RECIPE FROM USER
+    // const addRecipe = async () => {
 
-
-        // const shoppingList = [{id: 1, item_name: 'canned corn', amount: 425.243, unit: 'g'},
-        // {id: 2, item_name: 'canned black beans', amount: 425.243, unit: 'g'},
-        // {id: 3, item_name: 'sweet diced canned tomatoes', amount: 411.068, unit: 'g'}, 
-        // {id: 4, item_name: 'canned swanson premium chicken', amount: 170.097, unit: 'g'},
-        // {id: 5, item_name: 'canned enchilada sauce', amount: 283.495, unit: 'g'},
-        // {id: 6, item_name: "canned campbell's cream of mushroom soup", amount: 304.757, unit: 'g'},
-        // {id: 7, item_name: 'milk', amount: 366, unit: 'ml'},
-        // {id: 8, item_name: 'tortilla chips', amount: 4, unit: 'servings'}, 
-        // {id: 9, item_name: 'shredded cheese', amount: 4, unit: 'servings'}, 
-        // {id: 10, item_name: 'canned corn', amount: 425.243, unit: 'g'}, 
-        // {id: 11, item_name: 'canned black beans', amount: 425.243, unit: 'g'}, 
-        // {id: 12, item_name: 'sweet diced canned tomatoes', amount: 411.068, unit: 'g'}, 
-        // {id: 13, item_name: 'canned swanson premium chicken', amount: 170.097, unit: 'g'}, 
-        // {id: 14, item_name: 'canned enchilada sauce', amount: 283.495, unit: 'g'}, 
-        // {id: 15, item_name: "canned campbell's cream of mushroom soup", amount: 304.757, unit: 'g'}, 
-        // {id: 16, item_name: 'milk', amount: 366, unit: 'ml'}, 
-        // {id: 17, item_name: 'tortilla chips', amount: 4, unit: 'servings'}, 
-        // {id: 18, item_name: 'shredded cheese', amount: 4, unit: 'servings'}, 
-        // {id: 19, item_name: 'canned cherry pie filling', amount: 236.588, unit: 'ml'}, 
-        // {id: 20, item_name: 'cocoa powder', amount: 3, unit: 'Tbsps'}, 
-        // {id: 21, item_name: 'cream cheese', amount: 1.5, unit: 'pkg'}, 
-        // {id: 22, item_name: 'eggs', amount: 2, unit: ''}, 
-        // {id: 23, item_name: 'gelatin', amount: 0.571, unit: 'tsps'}, 
-        // {id: 24, item_name: 'heavy cream', amount: 238, unit: 'ml'}, 
-        // {id: 25, item_name: 'oreo cookies', amount: 12, unit: ''}, 
-        // {id: 26, item_name: 'powdered sugar', amount: 2, unit: 'Tbsps'}, 
-        // {id: 27, item_name: 'salt', amount: 1, unit: 'tsp'}, 
-        // {id: 28, item_name: 'semi-sweet chocolate chips', amount: 131.25, unit: 'ml'}, 
-        // {id: 29, item_name: 'sour cream', amount: 57.5, unit: 'ml'}]
-        // {id: 30, item_name: 'sugar', amount: 133.333, unit: 'g'}, 
-        // {id: 31, item_name: 'unsalted butter', amount: 1.521, unit: 'Tbsps'}, 
-        // {id: 32, item_name: 'vanilla extract', amount: 0.323, unit: 'tsps'}, 
-        // {id: 33, item_name: 'water', amount: 0.75, unit: 'cups'}, 
-        // {id: 34, item_name: 'canned cherry pie filling', amount: 236.588, unit: 'ml'}, 
-        // {id: 35, item_name: 'cocoa powder', amount: 3, unit: 'Tbsps'}, 
-        // {id: 36, item_name: 'cream cheese', amount: 1.5, unit: 'pkg'}, 
-        // {id: 37, item_name: 'eggs', amount: 2, unit: ''}, 
-        // {id: 38, item_name: 'gelatin', amount: 0.571, unit: 'tsps'}, 
-        // {id: 39, item_name: 'heavy cream', amount: 238, unit: 'ml'}, 
-        // {id: 40, item_name: 'oreo cookies', amount: 12, unit: ''}, 
-        // {id: 41, item_name: 'powdered sugar', amount: 2, unit: 'Tbsps'}, 
-        // {id: 42, item_name: 'salt', amount: 1, unit: 'tsp'}, 
-        // {id: 43, item_name: 'semi-sweet chocolate chips', amount: 131.25, unit: 'ml'}, 
-        // {id: 44, item_name: 'sour cream', amount: 57.5, unit: 'ml'}, 
-        // {id: 45, item_name: 'sugar', amount: 133.333, unit: 'g'}, 
-        // {id: 46, item_name: 'unsalted butter', amount: 1.521, unit: 'Tbsps'}, 
-        // {id: 47, item_name: 'vanilla extract', amount: 0.323, unit: 'tsps'}, 
-        // {id: 48, item_name: 'water', amount: 0.75, unit: 'cups'}]
-
-        //newList sum amounts when names match
-        
-        // let newList = Object.values(shoppingList.reduce((value, object) => {
-        //     if (value[object.item_name]) {
-        //       value[object.item_name].amount += object.amount; 
-        //       value[object.item_name].count++;
+    //   try {
+    //       let response = await Api._doFetch(`/api/recipes/${planId}`, 'POST', addedRecipe);
+    //       console.log(response);
+    //       if (response.ok) {  
+    //           console.log('Recipe added!')
+    //       } else {
+    //           console.log(`Server error: ${response.status}:
+    //           ${response.statusText}`);
+    //       }
           
-        //   } else {
-        //       value[object.item_name] = { ...object , count : 1
-        //       };
-        //     }
-        //     return value;
-        //   }, {}));
-          
-           //add an id to every item in the list
-        //   for (let index = 0; index < newList.length; index++) {
-        //     newList[index].id = index + 1;
-        //   }
-        //If units is equal to "" or "servings", then replace with
-
-        
-        
+    //   } catch (err) {
+    //       console.log(`Network error: ${err.message}`);
+    //   }
+    //   console.log(addedRecipe)
+    // };     
     
     //POST SHOPPING ITEMS TO THE LIST (when creating the plan¿?)
-    const addItem = async (newList) => {
+    // const addItem = async () => {
     
-      try {
-          let response = await Api._doFetch(`/api/recipes/${planId}`, 'POST', newList);
-          console.log(response);
-          if (response.ok) {            
-              console.log('Recipe added!')
-          } else {
-              console.log(`Server error: ${response.status}:
-              ${response.statusText}`);
-          }
+    //   try {
+    //       let response = await Api._doFetch(`/api/list/${planId}`, 'POST', newList);
+    //       console.log(response);
+    //       if (response.ok) {            
+    //           console.log('Recipe added!')
+    //       } else {
+    //           console.log(`Server error: ${response.status}:
+    //           ${response.statusText}`);
+    //       }
           
-      } catch (err) {
-          console.log(`Network error: ${err.message}`);
-      }
-    
-    };
-    console.log(newList.length)
-    // // Add every item (POST)
-    // for (let i = 0; i < newList.length; i++) {
-    //   addItem(addedItem);
-    //   setAddedItem((addedItem) => ({...addedItem, id: newList[i].id, item_name: `${newList[i].item_name}`, amount: newList[i].amount, unit: `${newList[i].unit}`}));
-    // }
-    // console.log(addedItem);
+    //   } catch (err) {
+    //       console.log(`Network error: ${err.message}`);
+    //   }
+    //   console.log(newList)
+    // };
+    //   // // Add every item (POST)
+    //   for (let i = 0; i < newList.length; i++) {
+    //     console.log("Hello")
+    //   //   addItem(addedItem);
+    //     setAddedItem((addedItem) => ({...addedItem, id: newList[i].id, item_name: `${newList[i].item_name}`, amount: newList[i].amount, unit: `${newList[i].unit}`}));
+    //   }
+    //   console.log(addedItem);
 
+
+
+    //POST function to modify a recipe
+    async function addItem() {
+      let options = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newList)
+      };
+
+      try {
+          let response = await fetch(`/api/list/${planId}`, options);
+          if (response.ok) {
+              let newList = await response.json();
+              setAddedItem(newList);
+          } else {
+              console.log(`Server error: ${response.status} ${response.statusText}`);
+          }
+      } catch (err) {
+          console.log(`Server error: ${err.message}`);
+      }
+  }
+
+  useEffect(() => {
+    addItem();
+  }, [newList]);
+
+
+  // async function deleteIngredient(id) {
+  //   // Define fetch() options
+  //   let options = {
+  //       method: 'DELETE'
+  //   };
+  
+  //   try {
+  //       let response = await fetch(`/api/list/${planId}/${id}`, options);
+  //       if (response.ok) {
+  //           let items = await response.json();
+  //           setAddedItem(items);
+  //       } else {
+  //           console.log(`Server error: ${response.status} ${response.statusText}`);
+  //       }
+  //   } catch (err) {
+  //       console.log(`Server error: ${err.message}`);
+  //   }
+  // }
 
   //DELETE INGREDIENT
-  const deleteIngredient = event => {
-    console.log("hello")
+  const deleteIngredient  = async event => {
+    let  name  = event.target.name;
+    console.log(name)
+      let options = {
+        method: 'DELETE'
+    };
+  
+    try {
+        let response = await fetch(`/api/list/${planId}`, options);
+        if (response.ok) {
+            let items = await response.json();
+            setAddedItem(items);
+        } else {
+            console.log(`Server error: ${response.status} ${response.statusText}`);
+        }
+    } catch (err) {
+        console.log(`Server error: ${err.message}`);
+    }
+ 
   }
+  // }
           
     // DOWNLOAD FUNCTION
   let weekDayArray = ['monday', 'tuesday', 'wednesday', 'thursday', "friday", "saturday", "sunday"];
@@ -372,7 +365,7 @@ const shoppingList = []
                             {item.unit}
                         </div>
                         <div className="col-1 content-right">
-                          <button id="buttonA" className="btn btn-warning btn-sm" title="delete" type="button" onClick = {deleteIngredient} >x</button>
+                          <button id="buttonA" name={item.item_name} className="btn btn-warning btn-sm" title="delete" type="button" onClick = {deleteIngredient} >x</button>
                         </div>
                     </div>
                 </div>
