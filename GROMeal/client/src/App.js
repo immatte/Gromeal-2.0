@@ -38,7 +38,6 @@ const EMPTY_PLAN = {
 
 function App() {
 
-
     const [plans, setPlans] = useState([]);
     const [user, setUser] = useState(Local.getUser());
     const [loginErrorMsg, setLoginErrorMsg] = useState('');
@@ -53,8 +52,10 @@ function App() {
     const [newPlan, setNewPlan] = useState(EMPTY_PLAN);
     const [editingPlan, setEditingPlan] = useState(null);
     const [warning, setWarning] = useState([]);
+    const [addedItems, setAddedItems] = useState([]);
+    let [newList] = useState([]);
 
-    let recipesObject = { warning, setWarning, user, editingPlan, setEditingPlan, userPlans, setUserPlans, getUserPlans, newPlan, setNewPlan, recipes, setRecipes, setPlans, editingRecipeId, setEditingRecipeId, featVisible, setfeatVisible, setFeatRecipe, showFeatRecipe, setAddedRecipe, planRecipes, updatePlanRecipes:(planRecipes) => setPlanRecipes(planRecipes), addedRecipe, featRecipe };
+    let recipesObject = { newList, addedItems, setAddedItems, warning, setWarning, user, editingPlan, setEditingPlan, userPlans, setUserPlans, getUserPlans, newPlan, setNewPlan, recipes, setRecipes, setPlans, editingRecipeId, setEditingRecipeId, featVisible, setfeatVisible, setFeatRecipe, showFeatRecipe, setAddedRecipe, planRecipes, updatePlanRecipes:(planRecipes) => setPlanRecipes(planRecipes), addedRecipe, featRecipe };
 
     useEffect(() => {
         getUserPlans();

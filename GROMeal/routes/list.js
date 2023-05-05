@@ -72,16 +72,16 @@ router.get("/:planId", async function(req, res, next) {
 
 
 //DELETE an item
-router.delete("/:planId", async (req, res, next) => {
-  let {name} = req.body;
+router.delete("/:planId/:item_name", async (req, res, next) => {
+  let name = req.params.item_name;
   let planId = req.params.planId;
 
   try {
-      let result = await db(`SELECT * FROM list WHERE name = ${name}`);
+      let result = await db(`SELECT * FROM list WHERE item_name = '${name}'`);
       if (result.data.length === 0) {
           res.status(404).send({ error: 'Item not found' });
       } else {
-          await db(`DELETE FROM list WHERE name = ${name}`);
+          await db(`DELETE FROM list WHERE item_name = '${name}'`);
           let result = await db(`SELECT * FROM list WHERE plan_id = ${planId}`);
           let recipes = result.data;
           res.send(recipes);
@@ -90,6 +90,5 @@ router.delete("/:planId", async (req, res, next) => {
       res.status(500).send({ error: err.message });
   }
 });
-
    
 module.exports = router;

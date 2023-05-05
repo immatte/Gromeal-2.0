@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, useParams, Route, Routes, useNavigate } from 'react-router-dom';
 import SpoonApi from "../helpers/SpoonApi";
-// import RecipesContext from "../components/RecipesContext";
-// import { useContext } from "react";
+import RecipesContext from "../components/RecipesContext";
+import { useContext } from "react";
 import ProgressBar from '../components/ProgressBar';
 
 
@@ -13,12 +13,13 @@ function ShoppingListView() {
 
     const [recipes, setRecipes] = useState([]);
     const [planRecipes, setPlanRecipes] = useState([]);
-    const [recipesIngredients, setRecipesIngredients] = useState([]);
-    const [addedItem, setAddedItem] = useState([]);
+    
     const [ingredients, setIngredients] = useState([]);
+    const [items, setItems] = useState([]);
+
     // const [pdf, setPdf] = useState(null);
     const { planId } = useParams();
-    // const {recipes, setRecipes, setPlanRecipes, editingRecipeId, setEditingRecipeId, featVisible, setfeatVisible, showFeatRecipe, setAddedRecipe, featRecipe, addedRecipe, setFeatRecipe } = useContext(RecipesContext);
+    const { addedItems, setAddedItems} = useContext(RecipesContext);
 
   
     useEffect(() => {
@@ -41,9 +42,7 @@ function ShoppingListView() {
       getPlanRecipes();
     }, []);
 
-    useEffect(() => {
-        getIngredients();
-      }, [planRecipes]);
+    
 
    
 
@@ -91,38 +90,7 @@ function ShoppingListView() {
   // console.log(recipesIngredients)
 
   // get ingredients by the id of each recipe
-  const getIngredients = async () => {
-      //getting only id and servings from planRecipes
-      let recipeId =  planRecipes.map(recipe => ({id: recipe.API_id, servings: recipe.servings}))
-      console.log(recipeId)
-      let recipesIngredients = [];
-      //loop to find the planRecipes ID within recipes, as to extract ingredient details
-      for(let i=0; i<=recipeId.length; i++){
-        let foundRecipe = recipes.find(r => r.id === recipeId[i].id);
-        let recipeIngredient = foundRecipe.extendedIngredients
-        recipeIngredient =  recipeIngredient.map(ingredient => ({item_name: ingredient.name, amount: ingredient.measures.metric.amount * recipeId[i].servings, unit: ingredient.measures.metric.unitShort}));
-        console.log(recipeIngredient)
-        //create a variable with current ingredient name value
-        let prevIngredient = "";
-        for(let i=0; i<recipeIngredient.length; i++){
-          //create a variable with previous ingredient name value
-          let currIngredient = recipeIngredient[i].item_name;
-          //if the current and previous value is equal, add up the amount
-          if(currIngredient !== prevIngredient){
-            recipesIngredients.push(recipeIngredient[i]);
-            prevIngredient = currIngredient
-          } else{
-            recipeIngredient[i-1].amount = recipeIngredient[i-1].amount + recipeIngredient[i-1].amount;
-          }
-          // console.log(recipesIngredients);
-        }
-        setRecipesIngredients(recipesIngredients);
-      }
-      //     // setIngredients((recipeIngredient) => ({...recipeIngredient, name: [name], week_day: "", servings: 1}));
-      
-    };
-    let newList = recipesIngredients;
-    console.log(newList);
+  
   // getIngredients()
   // console.log(recipesIngredients);
 
@@ -198,81 +166,79 @@ const shoppingList = []
     //   // // Add every item (POST)
     //   for (let i = 0; i < newList.length; i++) {
     //     console.log("Hello")
-    //   //   addItem(addedItem);
-    //     setAddedItem((addedItem) => ({...addedItem, id: newList[i].id, item_name: `${newList[i].item_name}`, amount: newList[i].amount, unit: `${newList[i].unit}`}));
+    //   //   addItem(addedItems);
+    //     setAddedItems((addedItems) => ({...addedItems, id: newList[i].id, item_name: `${newList[i].item_name}`, amount: newList[i].amount, unit: `${newList[i].unit}`}));
     //   }
-    //   console.log(addedItem);
+    //   console.log(addedItems);
 
 
 
     //POST function to modify a recipe
-    async function addItem() {
-      let options = {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(newList)
-      };
+  //   async function addItem() {
+  //     let options = {
+  //         method: 'POST',
+  //         headers: { 'Content-Type': 'application/json' },
+  //         body: JSON.stringify(newList)
+  //     };
 
-      try {
-          let response = await fetch(`/api/list/${planId}`, options);
-          if (response.ok) {
-              let newList = await response.json();
-              setAddedItem(newList);
-          } else {
-              console.log(`Server error: ${response.status} ${response.statusText}`);
-          }
-      } catch (err) {
-          console.log(`Server error: ${err.message}`);
-      }
-  }
-
-  useEffect(() => {
-    addItem();
-  }, [newList]);
-
-
-  // async function deleteIngredient(id) {
-  //   // Define fetch() options
-  //   let options = {
-  //       method: 'DELETE'
-  //   };
-  
-  //   try {
-  //       let response = await fetch(`/api/list/${planId}/${id}`, options);
-  //       if (response.ok) {
-  //           let items = await response.json();
-  //           setAddedItem(items);
-  //       } else {
-  //           console.log(`Server error: ${response.status} ${response.statusText}`);
-  //       }
-  //   } catch (err) {
-  //       console.log(`Server error: ${err.message}`);
-  //   }
+  //     try {
+  //         let response = await fetch(`/api/list/${planId}`, options);
+  //         if (response.ok) {
+  //             let newList = await response.json();
+  //             setAddedItems(newList);
+  //         } else {
+  //             console.log(`Server error: ${response.status} ${response.statusText}`);
+  //         }
+  //     } catch (err) {
+  //         console.log(`Server error: ${err.message}`);
+  //     }
   // }
 
-  //DELETE INGREDIENT
-  const deleteIngredient  = async event => {
-    let  name  = event.target.name;
-    console.log(name)
-      let options = {
+  
+
+  // useEffect(() => {
+  //   addItem();
+  // }, []);
+
+  useEffect(() => {
+    getItems();
+  }, []);
+
+  async function getItems() {
+
+    try {
+      let response = await fetch(`/api/list/${planId}`);
+      if (response.ok) {
+          let newList = await response.json();
+          setAddedItems(newList);
+      } else {
+          console.log(`Server error: ${response.status} ${response.statusText}`);
+      }
+  } catch (err) {
+      console.log(`Server error: ${err.message}`);
+  }
+  }
+
+
+          
+  async function deleteIngredient(item_name) {
+    // Define fetch() options
+    let options = {
         method: 'DELETE'
     };
   
     try {
-        let response = await fetch(`/api/list/${planId}`, options);
+        let response = await fetch(`/api/list/${planId}/${item_name}`, options);
         if (response.ok) {
-            let items = await response.json();
-            setAddedItem(items);
+            let exercises = await response.json();
+            setAddedItems(exercises);
         } else {
             console.log(`Server error: ${response.status} ${response.statusText}`);
         }
     } catch (err) {
         console.log(`Server error: ${err.message}`);
     }
- 
   }
-  // }
-          
     // DOWNLOAD FUNCTION
   let weekDayArray = ['monday', 'tuesday', 'wednesday', 'thursday', "friday", "saturday", "sunday"];
 
@@ -280,8 +246,8 @@ const shoppingList = []
     var doc = new jsPDF({
       // unit:"mm"
     });
-    shoppingList.forEach(function(ingredient,i){
-      doc.text(50,10+i*10, ingredient.item_name + " " + ingredient.amount + " " + ingredient.unit +"\n" );
+    shoppingList.forEach(function(newList,i){
+      doc.text(50,10+i*10, newList.item_name + " " + newList.amount + " " + newList.unit +"\n" );
     });
     doc.setFontSize(5);
 
@@ -345,7 +311,7 @@ const shoppingList = []
           }
             
           {
-            newList.map(item => (
+            addedItems.map(item => (
                 <div className="card" key={item.id}>
                     <div className="row p-2">
                          {/* <div className='col-1' >
@@ -365,7 +331,7 @@ const shoppingList = []
                             {item.unit}
                         </div>
                         <div className="col-1 content-right">
-                          <button id="buttonA" name={item.item_name} className="btn btn-warning btn-sm" title="delete" type="button" onClick = {deleteIngredient} >x</button>
+                          <button id="buttonA" name={item.item_name} className="btn btn-warning btn-sm" title="delete" type="button" onClick = {(e) => deleteIngredient(item.item_name)} >x</button>
                         </div>
                     </div>
                 </div>

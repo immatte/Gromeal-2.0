@@ -1,5 +1,6 @@
 import { useEffect, useContext } from "react";
 import React, { useState } from "react";
+import SpoonApi from "../helpers/SpoonApi";
 import { useParams, Routes, Route, NavLink, useNavigate } from "react-router-dom";
 import "./WeekPlanView.css";
 import WeekPlanCard from "../components/WeekPlanCard";
@@ -12,19 +13,45 @@ import ProgressBar from '../components/ProgressBar';
 
 function WeekPlanView(props) {
 
-    const [recipes, setRecipes] = useState([]);
     const { planId } = useParams();
+    const [recipesIngredients, setRecipesIngredients] = useState([]);
     const navigate = useNavigate();
     // const [editingRec, setEditingRec] = useState(null);
-    const {warning, setWarning, user, setUser, userPlans, planRecipes, updatePlanRecipes} = useContext(RecipesContext);
+    const {recipes, setRecipes, addedItems, setAddedItems, warning, setWarning, user, setUser, userPlans, planRecipes, updatePlanRecipes} = useContext(RecipesContext);
+
+    useEffect(() => {
+      getRandomRecipes();
+  }, []);
+
+  async function getRandomRecipes() {
+      let uresponse = await SpoonApi.getRandomRecipes();
+      console.log(uresponse);
+      if (uresponse.ok) {
+          setRecipes(uresponse.data.recipes);
+          
+      } else {
+          console.log('Error:', uresponse.error);
+      }
+
+  }
 
     useEffect(() => {
       getRecipes();      
     }, []);
+
+    useEffect(() => {
+      getIngredients();
+    }, [planRecipes]);
   
     // function handleClick(rId) {
     //   setEditingRec(rId)
     // }
+    useEffect(() => {
+      getRandomRecipes();
+  }, []);
+
+  
+
 
   // Get All Recipes from a plan
   async function getRecipes() {
@@ -43,7 +70,63 @@ function WeekPlanView(props) {
       console.log(`Server error: ${err.message}`);
   }
   }
-  
+
+  console.log(planRecipes)
+
+
+  const getIngredients = async () => {
+    //getting only id and servings from planRecipes
+    let recipeId =  planRecipes.map(recipe => ({id: recipe.API_id, servings: recipe.servings}))
+    console.log(recipeId)
+    let recipesIngredients = [];
+    //loop to find the planRecipes ID within recipes, as to extract ingredient details
+    for(let i=0; i<=recipeId.length; i++){
+      let foundRecipe = recipes.find(r => r.id === recipeId[i].id);
+      let recipeIngredient = foundRecipe.extendedIngredients
+      recipeIngredient =  recipeIngredient.map(ingredient => ({item_name: ingredient.name, amount: ingredient.measures.metric.amount * recipeId[i].servings, unit: ingredient.measures.metric.unitShort}));
+      console.log(recipeIngredient)
+      //create a variable with current ingredient name value
+      let prevIngredient = "";
+      for(let i=0; i<recipeIngredient.length; i++){
+        //create a variable with previous ingredient name value
+        let currIngredient = recipeIngredient[i].item_name;
+        //if the current and previous value is equal, add up the amount
+        if(currIngredient !== prevIngredient){
+          recipesIngredients.push(recipeIngredient[i]);
+          prevIngredient = currIngredient
+        } else{
+          recipeIngredient[i-1].amount = recipeIngredient[i-1].amount + recipeIngredient[i-1].amount;
+        }
+        console.log(recipesIngredients);
+      }
+      setRecipesIngredients(recipesIngredients);
+    }
+    //     // setIngredients((recipeIngredient) => ({...recipeIngredient, name: [name], week_day: "", servings: 1}));
+  };
+  console.log(recipesIngredients);
+  const newList = recipesIngredients;
+  console.log(newList);
+
+  //POST ingredients to items (POST It)
+  async function addItem() {
+    let options = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newList)
+    };
+
+    try {
+        let response = await fetch(`/api/list/${planId}`, options);
+        if (response.ok) {
+            let newList = await response.json();
+            setAddedItems(newList);
+        } else {
+            console.log(`Server error: ${response.status} ${response.statusText}`);
+        }
+    } catch (err) {
+        console.log(`Server error: ${err.message}`);
+    }
+}
   
 // DELETE a recipe
 async function deleteRecipe(id) {
@@ -122,7 +205,7 @@ const handleWarning = event => {
                         </NavLink>
                     </div>
                     <div className="col-8 mx-auto align-items-center"><ProgressBar activeStep={1}/></div>
-                    <div className="col-2 mx-auto text-end" onClick={handleWarning}>
+                    <div className="col-2 mx-auto text-end" onClick={function(event){ handleWarning(event); addItem();}}>
                         <NavLink id="backNext" className='col'to={`/shoppinglist/${planId}`}>
                             NEXT
                         </NavLink>
