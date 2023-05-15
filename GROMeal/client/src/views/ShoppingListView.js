@@ -246,7 +246,7 @@ const shoppingList = []
     var doc = new jsPDF({
       // unit:"mm"
     });
-    shoppingList.forEach(function(newList,i){
+    addedItems.forEach(function(newList,i){
       doc.text(50,10+i*10, newList.item_name + " " + newList.amount + " " + newList.unit +"\n" );
     });
     doc.setFontSize(5);
