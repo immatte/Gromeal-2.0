@@ -40,6 +40,8 @@ async function onModifyPlan(plan) {
 async function deletePlan(planId) {
   let confirm = window.confirm("Are you sure you want to delete this plan with all the recipes associated to it?")
   
+  //getting an error 'Cannot delete or update a parent row: a foreign key constraint fails (`gromeal`.`list`, CONSTRAINT `list_ibfk_1` FOREIGN KEY (`plan_id`) REFERENCES `plans` (`id`))' when plan_id is still present on "list", need to create a condition to delete the ingredients linked to plan from 'list' table first
+
   if (confirm) {
   // Define fetch() options
   

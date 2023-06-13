@@ -11,12 +11,12 @@ function Spoonacular() {
     // },[]);
 
     // const searchRecipes = async () => {
-    //   const api = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=10`);
+    //   const api = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&number=10`);
     //   const data = await api.json();
     //   console.log(data);
     //   setSearch(data.recipes);
     // }
-
+    // console.log(process.env.REACT_APP_API_KEY)
     
         const [recipes, setRecipes] = useState([]);
     
