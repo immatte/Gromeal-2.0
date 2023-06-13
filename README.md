@@ -20,7 +20,7 @@ GrenGrab is an app that aims to be a sustainable tool, to avoid food waste, as t
 2. Edit your Weekly Plan
 - Create an account to personalize your plans and recover a previous week plan created
 
-<video src="./gromeal-1_video.mp4" alt="Alt text" title="VideoGroMeal">
+<video src="./gromeal-1_video.mp4" alt="Alt text" title="VideoGroMeal"></video>
 
 ## Setup
 
