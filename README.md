@@ -22,6 +22,11 @@ GrenGrab is an app that aims to be a sustainable tool, to avoid food waste, as t
 
 <video src="./gromeal-1_video.mp4" alt="Alt text" title="VideoGroMeal"></video>
 
+<video width="320" height="240" autoplay>
+  <source src="./gromeal-1_video.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
 ## Setup
 
 ### Dependencies
