@@ -1,7 +1,5 @@
 ## GREENGRAB APP
 
-![alt text]("C:\PROJECTS - CODING\3_Collaboration_GroMeal\Gromeal_Thumbnail.PNG")
-
 <img src="./Gromeal_Thumbnail.PNG" alt="Alt text" title="GroMeal">
 
 GrenGrab is an app that aims to be a sustainable tool, to avoid food waste, as to plan and organize your weekly meals and provide a shopping list with all the needed ingredients(including total quantity).
@@ -21,6 +19,8 @@ GrenGrab is an app that aims to be a sustainable tool, to avoid food waste, as t
 
 2. Edit your Weekly Plan
 - Create an account to personalize your plans and recover a previous week plan created
+
+<video src="./gromeal-1_video.mp4" alt="Alt text" title="VideoGroMeal">
 
 ## Setup
 
