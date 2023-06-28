@@ -20,9 +20,11 @@ CREATE TABLE users (
 -- user1 has password pass1 (etc)
 INSERT INTO users (username, password, email)
 VALUES 
-    ('user1','$2b$12$eFzMWbS9SogNtxkmo3J7aO8FQMFQSKbtpwLMIOVsF6GGKpTQdgq.W','user1@acme.com'),
-    ('user2','$2b$12$WZcGPyrkCvD5e8m0Qz/nFOdBryUcsp6uDlE2MDo/AjuBhPrQBCfI6','user2@acme.com'),
-    ('user3','$2b$12$tiAz4eaXlpU.CdltUVvw6udLA2BWsitk5zXM2XOm2IpAeAiFfMCdy','user3@acme.com');
+    ('Marta','$2b$12$eFzMWbS9SogNtxkmo3J7aO8FQMFQSKbtpwLMIOVsF6GGKpTQdgq.W','Marta@acme.com'),
+    ('Clara','$2b$12$WZcGPyrkCvD5e8m0Qz/nFOdBryUcsp6uDlE2MDo/AjuBhPrQBCfI6','Clara@acme.com'),
+    ('Laura','$2b$12$tiAz4eaXlpU.CdltUVvw6udLA2BWsitk5zXM2XOm2IpAeAiFfMCdy','Laura@acme.com'),
+    ('Isabelle','$2b$12$HF7mO4.LZh5aQLjmFimRbOc22VX.abiNwHA7E/dd1g2OyloySKCY2','IsaRight@email.com');
+
 
 -- TABLE for Weekly Plannings
 CREATE TABLE plans (
