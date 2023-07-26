@@ -72,7 +72,7 @@ router.get("/allplans/:id", async function(req, res, next) {
 });
 module.exports = router;
 
-//Modify only de userId of the plan
+//Modify only the userId of the plan
 router.put("/allplans/:planId", async (req, res, next) => {
   let planId = req.params.planId;
   let { user_id } = req.body;

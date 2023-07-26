@@ -1,4 +1,4 @@
-## GREENGRAB APP
+## GROMEAL APP
 
 <img src="./Gromeal_Thumbnail.PNG" alt="Alt text" title="GroMeal">
 
