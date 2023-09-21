@@ -1,27 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
-
-import Local from './helpers/Local';
+// Helpers
 import Api from './helpers/Api';
-
-import NavBar from './components/NavBar';
-
-import PrivateRoute from './components/PrivateRoute';
-import LoginView from './views/LoginView';
-import ErrorView from './views/ErrorView';
-import OldPlansView from './views/OldPlansView';
-import UsersView from './views/UsersView';
-import Spoonacular from './views/Spoonacular';
-import HomeView from './views/HomeView';
-import ShoppingListView from './views/ShoppingListView';
-import RecipesView from './views/RecipesView';
-import WeekPlanView from './views/WeekPlanView';
-import ProfileView from './views/ProfileView';
-import RegisterView from './views/RegisterView';
+import Local from './helpers/Local';
+// Components
 //import AddPlanForm from './components/AddPlanForm';
-
+import NavBar from './components/NavBar';
+import PrivateRoute from './components/PrivateRoute';
 import RecipesContext from "./components/RecipesContext";
+// Views
+import ErrorView from './views/ErrorView';
+import HomeView from './views/HomeView';
+import LoginView from './views/LoginView';
+import OldPlansView from './views/OldPlansView';
+import ProfileView from './views/ProfileView';
+import RecipesView from './views/RecipesView';
+import RegisterView from './views/RegisterView';
+import ShoppingListView from './views/ShoppingListView';
+import Spoonacular from './views/Spoonacular';
+import UsersView from './views/UsersView';
+import WeekPlanView from './views/WeekPlanView';
 
 const EMPTY_FORM = {
     API_id: 0,
@@ -65,16 +64,6 @@ function App() {
     function showFeatRecipe(id){
         let selectedRecipe = recipes.find(r => r.id === id);
         setFeatRecipe(selectedRecipe);
-        // let ingredients = selectedRecipe.extendedIngredients;
-        // let ingredientList = []
-        // console.log(ingredients);
-        // console.log(ingredients[0].name);
-        // for(let i=0; i<= ingredients.length; i++){
-        //     // console.log(ingredients[i].name)
-        //     ingredientList += ingredients[i].name;
-        //     // console.log(ingredientList);
-        // }
-        // console.log(ingredientList);
         setAddedRecipe((addedRecipe) => ({...addedRecipe, API_id: selectedRecipe.id, recipe_title: selectedRecipe.title, recipe_image: selectedRecipe.image}));
     };
     

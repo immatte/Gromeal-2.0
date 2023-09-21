@@ -2,7 +2,7 @@
 
 <img src="./Gromeal_Thumbnail.PNG" alt="Alt text" title="GroMeal">
 
-GrenGrab is an app that aims to be a sustainable tool, to avoid food waste, as to plan and organize your weekly meals and provide a shopping list with all the needed ingredients(including total quantity).
+GrenGrab is an app that aims to be a sustainable tool, to avoid food waste, as to plan and organize your weekly meals and provide a shopping list with all the needed ingredients(including total quantity). Project collaborators : @nalmarazgutierrez, @AnitaMari and @immatte Project supervision : @jbrcodes and @vic-fb
 
 ## Features:
 
@@ -52,7 +52,18 @@ DB_PASS=root
 
 - Make sure you understand how each table is constructed. In your MySQL console, you can run `use gromeal;` and then `describe users;` or `describe plans;` or `describe recipes;` or `describe list;` to see the structure of the students table.
 
+- For testing reasons, a data sample of 500 recipes was extracted from the API Spoonacular and are being used directly from '\client\public\test\random.json'. However, the function Spoonacular is already built in file '\client\src\views\Spoonacular.js' but currently deactivated.
+
+### Views and Components in Frontend(client)
+
+- We are using React-Context for this project, most of the variables and functions are being imported from file '\client\src\components\RecipesContext.js'
+
+- The file App.js is the parent from all the views(.js) and some of the helpers(.js) and components(.js). The rest of the components and helpers are imported directly into the views which are children from App
+
 ### Development
 
 - Run `npm start` in project directory (my-express-app) to start the Express server on port 5000
 - In another terminal, do `cd client` and run `npm start` to start the client in development mode with hot reloading in port 3000.
+
+
+
