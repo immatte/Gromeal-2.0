@@ -9,22 +9,11 @@ import LoginView from "./LoginView";
 import ProgressBar from '../components/ProgressBar';
 import 'react-toastify/dist/ReactToastify.css';
 
-
-// const EMPTY_FORM = {
-//     API_id: 0,
-//     recipe_title: '',
-//     recipe_image: '',
-//     servings: 1,
-//     meal_type: '',
-//     week_day: '',
-// };
-
 const EMPTY_SEARCH = {
     dishType: '',
     cuisines: '',
     diets: ''
 };
-
 
 function RecipesView(props){
     
@@ -95,7 +84,6 @@ function RecipesView(props){
         }
     }
 
-   
     //MAKE VISIBLE RECIPE DETAILS WHEN CLICKING ON A RECIPE FROM THE GRID
     const handleChangeView = (featVisible) => {
         setfeatVisible(featVisible);
@@ -107,9 +95,6 @@ function RecipesView(props){
         let name = event.target.name;
         setAddedRecipe((addedRecipe) => ({...addedRecipe, [name]: value}));
     };
-
-
-    // console.log(addedRecipe.week_day);
 
     //WHEN SUBMITTING FORM -> ADD RECIPE
     const handleSubmit = event => {
@@ -188,11 +173,7 @@ function RecipesView(props){
 
     
     let recipeSteps = featRecipe && featRecipe.analyzedInstructions[0].steps;
-    let recipeIngredients = featRecipe && featRecipe.extendedIngredients;
-    // console.log(featRecipe.analyzedInstructions[0].steps);
-    // console.log(recipeIngredients);
-    
-
+    let recipeIngredients = featRecipe && featRecipe.extendedIngredients;  
 
     return (
     
@@ -351,7 +332,6 @@ function RecipesView(props){
                         <div className="recipeBlock" id={recipe.id} key={recipe.id} onClick={() => showFeatRecipe(recipe.id)}>
                             <img src={recipe.image} alt="recipe"></img>
                             <h5 className="imageLeg" id='recipeTitle'>{recipe.title}</h5>
-                            {/* <h6 className="imageLeg">Ready in: {recipe.readyInMinutes} min</h6> */}
                         </div>
                     </div>
                     ))
