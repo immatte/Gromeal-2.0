@@ -43,10 +43,12 @@ function App() {
     const [userPlans, setUserPlans] = useState([]);
     const navigate = useNavigate();
     const [planRecipes, setPlanRecipes] = useState([]);
+    //Mostly used in recipesview
     const [recipes, setRecipes] = useState([]);
     const [featRecipe, setFeatRecipe] = useState(null);
     const [ addedRecipe, setAddedRecipe ] = useState(EMPTY_FORM);
     const [featVisible, setfeatVisible] = useState(true);
+    
     const [editingRecipeId, setEditingRecipeId] =useState(null);
     const [newPlan, setNewPlan] = useState(EMPTY_PLAN);
     const [editingPlan, setEditingPlan] = useState(null);
@@ -111,47 +113,47 @@ function App() {
             
             
             <div>
-            <RecipesContext.Provider value={recipesObject}>
-                <Routes>
-                    <Route path="/"element={<HomeView userPlans={userPlans} plans={plans} setPlans={setPlans} user={user}/>} />
-                    <Route path="/users" element={<UsersView />} />
-                    <Route path="/users/:userId" element={
+                <RecipesContext.Provider value={recipesObject}>
+                    <Routes>
+                        <Route path="/"element={<HomeView userPlans={userPlans} plans={plans} setPlans={setPlans} user={user}/>} />
+                        <Route path="/users" element={<UsersView />} />
+                        <Route path="/users/:userId" element={
+                            <PrivateRoute>
+                                <ProfileView />
+                            </PrivateRoute>
+                        } />
+
+                        <Route path="/plans/:userId" element={
+                            <PrivateRoute>
+                                <OldPlansView plans={plans}/>
+                            </PrivateRoute>
+                        } />
+
+
+                        <Route path="/login" element={
+                            <LoginView 
+                                loginCb={(u, p) => doLogin(u, p)} 
+                                loginError={loginErrorMsg} 
+                                setUserPlans={setUserPlans}
+                                userPlans={userPlans}
+                            />
+                        } />
+
+                        <Route path="/register" element={
+                            <RegisterView />
+                        } />
+
+                        <Route path="/spoon" element={<Spoonacular /> } />
+                        <Route path="/recipes/:planId" element={<RecipesView /> } />              
+                        <Route path="/shoppinglist/:planId" element={
                         <PrivateRoute>
-                            <ProfileView />
-                        </PrivateRoute>
-                    } />
-
-                    <Route path="/plans/:userId" element={
-                        <PrivateRoute>
-                            <OldPlansView plans={plans}/>
-                        </PrivateRoute>
-                    } />
-
-
-                    <Route path="/login" element={
-                        <LoginView 
-                            loginCb={(u, p) => doLogin(u, p)} 
-                            loginError={loginErrorMsg} 
-                            setUserPlans={setUserPlans}
-                            userPlans={userPlans}
-                        />
-                    } />
-
-                    <Route path="/register" element={
-                        <RegisterView />
-                    } />
-
-                    <Route path="/spoon" element={<Spoonacular /> } />
-                    <Route path="/recipes/:planId" element={<RecipesView /> } />              
-                    <Route path="/shoppinglist/:planId" element={
-                    <PrivateRoute>
-                            <ShoppingListView/>
-                        </PrivateRoute>  } />  
-                       
-                    <Route path="/weekPlan/:planId" element={<WeekPlanView /> } />
-                
-                    <Route path="*" element={<ErrorView code="404" text="Page not found" />} />
-                </Routes>
+                                <ShoppingListView/>
+                            </PrivateRoute>  } />  
+                        
+                        <Route path="/weekPlan/:planId" element={<WeekPlanView /> } />
+                    
+                        <Route path="*" element={<ErrorView code="404" text="Page not found" />} />
+                    </Routes>
                 </RecipesContext.Provider>
             </div>
            

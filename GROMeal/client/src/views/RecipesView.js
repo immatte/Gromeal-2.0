@@ -5,10 +5,10 @@ import SpoonApi from "../helpers/SpoonApi";
 import "./RecipesView.css";
 import Api from '../helpers/Api';
 import RecipesContext from "../components/RecipesContext";
-import LoginView from "./LoginView";
 import ProgressBar from '../components/ProgressBar';
 import 'react-toastify/dist/ReactToastify.css';
 
+/* EMPTY SEARCH WHEN PAGE IS LOAD OR WHEN BUTTON CLEAR ALL IS CLICKED*/
 const EMPTY_SEARCH = {
     dishType: '',
     cuisines: '',
@@ -17,16 +17,22 @@ const EMPTY_SEARCH = {
 
 function RecipesView(props){
     
+    //User plan Id from old plans
     const { planId } = useParams();
-    //const [featVisible, setfeatVisible] = useState(true);
+    //Used when for search feature
     const [search, setSearch] = useState(EMPTY_SEARCH);
+    //Used for filtered recipes once Search button is pressed
     const [filteredRecipes, setFilteredRecipes] = useState([]);
+    //From RecipesContext - variables set on '..\App.js'
     const {recipes, setRecipes, setPlanRecipes, editingRecipeId, setEditingRecipeId, featVisible, setfeatVisible, showFeatRecipe, setAddedRecipe, featRecipe, addedRecipe, setFeatRecipe } = useContext(RecipesContext);
 
+    //WHEN LOADING THE PAGE
+    /* Effet 1. Populating 'recipes' with array of 100 objects */
     useEffect(() => {
         getRandomRecipes();
     }, []);
-
+    /* Effet 2. Setting recipes = filteredRecipes, as to avoid errors
+       before pressing on search button*/
     useEffect(() => {
         setFilteredRecipes(recipes);
     }, [recipes]);
@@ -42,10 +48,9 @@ function RecipesView(props){
         }
 
     }
-   
+
     //FETCH POST NEW RECIPE FROM USER
     const addRecipe = async () => {
-    
         try {
             let response = await Api._doFetch(`/api/recipes/${planId}`, 'POST', addedRecipe);
             console.log(response);
@@ -64,7 +69,6 @@ function RecipesView(props){
 
     //PUT function to modify a recipe
     async function modifyRecipe() {
-
         let options = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
@@ -85,6 +89,7 @@ function RecipesView(props){
     }
 
     //MAKE VISIBLE RECIPE DETAILS WHEN CLICKING ON A RECIPE FROM THE GRID
+    //showFeatRecipe is called from '../App.js'
     const handleChangeView = (featVisible) => {
         setfeatVisible(featVisible);
       };
@@ -99,6 +104,7 @@ function RecipesView(props){
     //WHEN SUBMITTING FORM -> ADD RECIPE
     const handleSubmit = event => {
         event.preventDefault();
+        //if modification coming from '.\WeekPlanView.js' edit the recipe with previous PUT function
         if (editingRecipeId) {
             modifyRecipe();
             setEditingRecipeId(null);
@@ -113,7 +119,7 @@ function RecipesView(props){
                 progress: undefined,
                 theme: "dark",
                 })
-            
+        //else adding a recipe to addedRecipe
         } else {        
         addRecipe(addedRecipe);
         let message = `Successfully added! : ${addedRecipe.servings} portions on ${addedRecipe.week_day} at ${addedRecipe.meal_type}`
@@ -136,12 +142,10 @@ function RecipesView(props){
     const handleSearchChange = event => {
         let  value  = event.target.value;
         let name = event.target.name;
-        
-        setSearch((search) => ({...search, [name]: value}));
-            
+        setSearch((search) => ({...search, [name]: value}));     
     };
     
-    // WHEN SUBMITTING ON SEARCH BAR
+    // WHEN SUBMITTING ON SEARCH BAR (SEARCH BUTTON)
     const handleSearchSubmit = event => {
         event.preventDefault(); 
         let newGrid = recipes;
@@ -158,6 +162,7 @@ function RecipesView(props){
         setFilteredRecipes(newGrid);
     };
 
+    // WHEN CLICKING ON 'CLEAR ALL' BUTTON
     const clearSearch = event => {
         event.preventDefault(); 
         setFilteredRecipes(recipes)
@@ -171,7 +176,7 @@ function RecipesView(props){
     let cuisines = ["Italian","Mediterranean","European","Mexican","French","Greek"];
     let diets = ["vegan","vegetarian","gluten free","dairy free","lacto ovo vegetarian"];
 
-    
+    //VARIABLES CREATED TO USE IN HTML PART VISIBILITY
     let recipeSteps = featRecipe && featRecipe.analyzedInstructions[0].steps;
     let recipeIngredients = featRecipe && featRecipe.extendedIngredients;  
 

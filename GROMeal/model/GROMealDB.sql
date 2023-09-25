@@ -23,7 +23,7 @@ VALUES
     ('Marta','$2b$12$eFzMWbS9SogNtxkmo3J7aO8FQMFQSKbtpwLMIOVsF6GGKpTQdgq.W','Marta@acme.com'),
     ('Clara','$2b$12$WZcGPyrkCvD5e8m0Qz/nFOdBryUcsp6uDlE2MDo/AjuBhPrQBCfI6','Clara@acme.com'),
     ('Laura','$2b$12$tiAz4eaXlpU.CdltUVvw6udLA2BWsitk5zXM2XOm2IpAeAiFfMCdy','Laura@acme.com'),
-    ('Isabelle','$2b$12$HF7mO4.LZh5aQLjmFimRbOc22VX.abiNwHA7E/dd1g2OyloySKCY2','IsaRight@email.com');
+    ('Isabelle','$2b$12$HF7mO4.LZh5aQLjmFimRbOc22VX.abiNwHA7E/dd1g2OyloySKCY2','Isabelle@acme.com');
 
 
 -- TABLE for Weekly Plannings
