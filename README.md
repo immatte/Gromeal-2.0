@@ -2,7 +2,7 @@
 
 <img src="./Gromeal_Thumbnail.PNG" alt="Alt text" title="GroMeal">
 
-GrenGrab is an app that aims to be a sustainable tool, to avoid food waste, as to plan and organize your weekly meals and provide a shopping list with all the needed ingredients(including total quantity). Project collaborators : @nalmarazgutierrez, @AnitaMari and @immatte Project supervision : @jbrcodes and @vic-fb
+Gromeal is an app that aims to be a sustainable tool, to avoid food waste, as to plan and organize your weekly meals and provide a shopping list with all the needed ingredients(including total quantity). Project collaborators : @nalmarazgutierrez, @AnitaMari and @immatte Project supervision : @jbrcodes and @vic-fb
 
 ## Features:
 
