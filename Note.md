@@ -14,7 +14,7 @@
 
 ## TO-DO
 
-# DOING
+## DOING
 - INVESTIGATION - Documentation API google MAPS
 - INVESTIGATION - Documentation API paypal
 - BACKEND - Shops tables
