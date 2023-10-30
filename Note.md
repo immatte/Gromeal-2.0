@@ -21,8 +21,4 @@
 - INVESTIGATION - Documentation API paypal
 - BACKEND - Shops tables
 
-## DONE N 
-
-    
-
- Add Index  Add Column 
+## DONE
