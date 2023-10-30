@@ -13,6 +13,8 @@
 **the shops data will be added by sellers themselves
 
 ## TO-DO
+- correct double amounts on ingredients --> check if can be solved on post in WeeklyPlan view
+- Get all ingredients from sample in a veriable --> check recipes[0].extendedIngredients[0].name (use 2 or 3 for loops)
 
 ## DOING
 - INVESTIGATION - Documentation API google MAPS
