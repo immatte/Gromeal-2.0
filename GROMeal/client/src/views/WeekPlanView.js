@@ -84,7 +84,6 @@ function WeekPlanView(props) {
       let foundRecipe = recipes.find(r => r.id === recipeId[i].id);
       let recipeIngredient = foundRecipe.extendedIngredients
       recipeIngredient =  recipeIngredient.map(ingredient => ({item_name: ingredient.name, amount: ingredient.measures.metric.amount * recipeId[i].servings, unit: ingredient.measures.metric.unitShort}));
-      console.log(recipeIngredient)
       //create a variable with current ingredient name value
       let prevIngredient = "";
       for(let i=0; i<recipeIngredient.length; i++){
@@ -97,15 +96,12 @@ function WeekPlanView(props) {
         } else{
           recipeIngredient[i-1].amount = recipeIngredient[i-1].amount + recipeIngredient[i-1].amount;
         }
-        console.log(recipesIngredients);
       }
       setRecipesIngredients(recipesIngredients);
     }
     //     // setIngredients((recipeIngredient) => ({...recipeIngredient, name: [name], week_day: "", servings: 1}));
   };
-  console.log(recipesIngredients);
   const newList = recipesIngredients;
-  console.log(newList);
 
   //POST ingredients to items (POST It)
   async function addItem() {
