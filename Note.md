@@ -22,3 +22,8 @@
 - BACKEND - Shops tables
 
 ## DONE
+ - recovered list of ingredients in variable "ingredientList" by using a for loop on recipes, in App(lines 85-97).js
+ - created a ingredients data file called Ingredients in test folder
+    
+
+ Add Index  Add Column 

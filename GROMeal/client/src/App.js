@@ -38,6 +38,7 @@ const EMPTY_PLAN = {
 function App() {
 
     const [plans, setPlans] = useState([]);
+    const [ingredientList, setIngredientList] = useState([]);
     const [user, setUser] = useState(Local.getUser());
     const [loginErrorMsg, setLoginErrorMsg] = useState('');
     const [userPlans, setUserPlans] = useState([]);
@@ -81,6 +82,20 @@ function App() {
             setLoginErrorMsg('Login failed');
         }
     }
+    // let ingredients = []
+    // for(let recipe of recipes){
+    //     // console.log(recipe.extendedIngredients)
+    //     let extendedIngredients = recipe.extendedIngredients
+    //     for(let ingredient of extendedIngredients){
+    //         // console.log(ingredient.name)
+    //         let name = ingredient.name;
+    //         ingredients.push(name);
+    //     }
+    //     let filteredIng = ingredients.filter((item, index) => ingredients.indexOf(item) === index);
+    //     setIngredientList(filteredIng)
+    // }
+    // console.log(ingredientList)
+
 
     function doLogout() {
         Local.removeUserInfo();
@@ -96,7 +111,6 @@ function App() {
           if (response.ok) {
               let plans = response.data;
               setUserPlans(plans);
-              console.log(plans);
           } else {
               console.log(`Server error: ${response.status} ${response.statusText}`);
           }
