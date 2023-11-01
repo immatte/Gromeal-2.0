@@ -210,7 +210,7 @@ const shoppingList = []
       let response = await fetch(`/api/list/${planId}`);
       if (response.ok) {
           let newList = await response.json();
-          setAddedItems(newList);
+          reduceObjects(newList)
       } else {
           console.log(`Server error: ${response.status} ${response.statusText}`);
       }
@@ -219,7 +219,21 @@ const shoppingList = []
   }
   }
 
+  function reduceObjects(newList) {
+    const reducedList = newList.reduce((accumulator, current) => {
+        const existingItem = accumulator.find(item => item.item_name === current.item_name);
+        if (existingItem) {
+            existingItem.amount += current.amount;
+        } else {
+          accumulator.push({ ...current });
+        }
 
+        return accumulator;
+    }, []);
+    setAddedItems(reducedList)
+}
+
+console.log(addedItems)
           
   async function deleteIngredient(item_name) {
     // Define fetch() options
@@ -281,34 +295,6 @@ const shoppingList = []
           <h1 className="col" id="title">My Shopping List</h1>
             <button id="buttonA" className="btn btn-warning btn-md col-4" onClick={downloadPdf}>DOWNLOAD</button>
             </div>
-
-            {
-            // recipesIngredients.map(item => (
-            //     <div className="card" key={item.id}>
-            //         <div className="row p-2">
-            //              {/* <div className='col-1' >
-                            
-            //                 {item.id}
-            //             </div> */}
-            //             <div className='col-6 px-5'>
-                            
-            //                 {item.item_name}
-            //             </div>
-            //             <div className='col-3'>
-            //                 {Math.round(item.amount)}
-            //             </div>
-                    
-            //             <div className='col-1'>
-                            
-            //                 {item.unit}
-            //             </div>
-            //             <div className="col-1 content-right">
-            //               <button id="buttonA" className="btn btn-warning btn-sm" title="delete" type="button" onClick = {deleteIngredient}>x</button>
-            //             </div>
-            //         </div>
-            //     </div>
-            // ))
-          }
             
           {
             addedItems.map(item => (

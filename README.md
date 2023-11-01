@@ -67,4 +67,9 @@ DB_PASS=root
 
 
 
-# Automation-project
+# tables, functions and variables
+
+- function addItem : all Ingredients from recipes of a determined plan_id(indicated in frontend URL) are posted on the "list" table when clicking on button "Next" from navigation bar of WeekPlanView. The resulting array is then updated, by using UseState, to const addedItems.
+
+- function getItems : getting the ingredients from list tables from shoppingListView and using function reduceObjects(newList) to sum ingredients amounts. The resulting array is being re-sent to const addedItems.
+
