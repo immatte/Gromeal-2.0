@@ -23,6 +23,7 @@ function WeekPlanView(props) {
       getRandomRecipes();
   }, []);
 
+    console.log(planRecipes)
   async function getRandomRecipes() {
       let uresponse = await SpoonApi.getRandomRecipes();
       console.log(uresponse);
@@ -126,6 +127,9 @@ function WeekPlanView(props) {
   
 // DELETE a recipe
 async function deleteRecipe(id) {
+  console.log(id)
+  const foundrecipe = planRecipes.find((recipe) => recipe.id === id);
+  console.log(foundrecipe.API_id)
   let confirm = window.confirm("Are you sure you want to delete this recipe?")
     
   if (confirm) {
@@ -139,6 +143,8 @@ async function deleteRecipe(id) {
       if (response.ok) {
           let planRecipes = await response.json();
           updatePlanRecipes(planRecipes);
+          deleteItems();
+          addItem();
       } else {
           console.log(`Server error: ${response.status} ${response.statusText}`);
       }
@@ -147,6 +153,26 @@ async function deleteRecipe(id) {
   }
 }
 }
+
+  //DELETE all ingredients from deleted recipe (deleting from list)
+  async function deleteItems() {
+    let options = {
+      method: 'DELETE'
+  };
+
+    try {
+        let response = await fetch(`/api/list/${planId}`, options);
+        if (response.ok) {
+            let newList = await response.json();
+            setAddedItems(newList);
+        } else {
+            console.log(`Server error: ${response.status} ${response.statusText}`);
+        }
+    } catch (err) {
+        console.log(`Server error: ${err.message}`);
+    }
+}
+
 
 let mondayBreakfast = planRecipes.filter(r => r.meal_type === "breakfast" && r.week_day === "monday");
 let mondayLunch = planRecipes.filter(r => r.meal_type === "lunch" && r.week_day === "monday");

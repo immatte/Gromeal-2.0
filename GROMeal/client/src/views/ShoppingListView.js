@@ -28,7 +28,6 @@ function ShoppingListView() {
 
     async function getRandomRecipes() {
         let uresponse = await SpoonApi.getRandomRecipes();
-        console.log(uresponse);
         if (uresponse.ok) {
             setRecipes(uresponse.data.recipes);
             
@@ -204,12 +203,14 @@ const shoppingList = []
     getItems();
   }, []);
 
+
   async function getItems() {
 
     try {
       let response = await fetch(`/api/list/${planId}`);
       if (response.ok) {
           let newList = await response.json();
+          console.log("hello")
           reduceObjects(newList)
       } else {
           console.log(`Server error: ${response.status} ${response.statusText}`);
@@ -231,9 +232,9 @@ const shoppingList = []
         return accumulator;
     }, []);
     setAddedItems(reducedList)
-}
+  }
+  console.log(addedItems)
 
-console.log(addedItems)
           
   async function deleteIngredient(item_name) {
     // Define fetch() options
