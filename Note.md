@@ -24,6 +24,13 @@
 ## DONE
  - recovered list of ingredients in variable "ingredientList" by using a for loop on recipes, in App(lines 85-97).js
  - created a ingredients data file called Ingredients in test folder
-    
+ - Added a delete route in list as to delete all the ingredients from a plan_id when a recipe is deleted and the all array is re-posted with the updated recipes list ingredients
+ - Backend route shopsRouter created(shops.js). 
+  1. GET shops info : "http://localhost:5000/api/shops/"
+  2. GET all product list : "http://localhost:5000/api/shops/products"
+  3. GET product list by shop id : "http://localhost:5000/api/shops/:shopsId"
+  4. GET product by id : "http://localhost:5000/api/shops/products/:product"
+  5. POST A NEW ITEM : "http://localhost:5000/api/shops/:shopsId"
+  6. DELETE a product : "http://localhost:5000/api/shops/products/:product"
 
  Add Index  Add Column 
