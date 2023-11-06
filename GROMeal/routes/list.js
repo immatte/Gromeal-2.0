@@ -50,26 +50,24 @@ router.get("/:planId", async function(req, res, next) {
   }
 });
 
-//DELETE an item
-// router.delete("/:planId/:id", async (req, res, next) => {
-//   let index = req.params.id;
-//   let planId = req.params.planId;
+//DELETE all items from a plan
+router.delete("/:planId", async (req, res, next) => {
+  let planId = req.params.planId;
 
-//   try {
-//       let result = await db(`SELECT * FROM list WHERE id = ${index}`);
-//       if (result.data.length === 0) {
-//           res.status(404).send({ error: 'Item not found' });
-//       } else {
-//           await db(`DELETE FROM list WHERE id = ${index}`);
-//           let result = await db(`SELECT * FROM list WHERE plan_id = ${planId}`);
-//           let recipes = result.data;
-//           res.send(recipes);
-//       } 
-//   } catch (err) {
-//       res.status(500).send({ error: err.message });
-//   }
-// });
-
+  try {
+      let result = await db(`SELECT * FROM list`);
+      if (result.data.length === 0) {
+          res.status(404).send({ error: 'Item not found' });
+      } else {
+          await db(`DELETE FROM list WHERE plan_id = ${planId}`);
+          let result = await db(`SELECT * FROM list WHERE plan_id = ${planId}`);
+          let items = result.data;
+          res.send(items);
+      } 
+  } catch (err) {
+      res.status(500).send({ error: err.message });
+  }
+});
 
 //DELETE an item
 router.delete("/:planId/:item_name", async (req, res, next) => {
