@@ -52,6 +52,18 @@ router.get("/products/:product", async function(req, res, next) {
    }
  });
 
+// GET product by name
+router.get("/products/search", async function(req, res, next) {
+  const {search} = req.query
+   try {
+     let results = await db(`SELECT * FROM shops_products WHERE product_name LIKE '%${search}%'`);
+     let search = results.data;
+     res.send(search);
+   } catch (err) {
+     res.status(500).send({ error: err.message });
+   }
+ });
+
  //POST A NEW ITEM
  router.post("/:shopsId", async (req, res, next) => {
   let shopsId = req.params.shopsId 
