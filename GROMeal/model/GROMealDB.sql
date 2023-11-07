@@ -71,7 +71,9 @@ CREATE TABLE list (
 CREATE TABLE shops (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     shop_name VARCHAR(200) NOT NULL,
-    location_address VARCHAR(200) NOT NULL
+    location_address VARCHAR(200) NOT NULL,
+    latitude VARCHAR(200),
+    longitude VARCHAR(200)
 );
 
 -- grocery shops with name and address in Barcelona
@@ -88,7 +90,7 @@ CREATE TABLE shops_products (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     shop_id INT NOT NULL,
     product_name VARCHAR(20) NOT NULL,
-    price INT,
+    price DECIMAL(10,2),
     FOREIGN KEY (shop_id) REFERENCES shops(id)
 );
 
@@ -104,5 +106,6 @@ VALUES
     (1, 'round rice',2.85),
     (1, 'couscous',4.60),
     (1, 'textured soybeans',7.40),
-    (1, 'quinoa',7.70);
+    (1, 'quinoa',7.70),
+    (2, 'lentils', 3.65);
 
