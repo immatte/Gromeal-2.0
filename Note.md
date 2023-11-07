@@ -13,8 +13,21 @@
 **the shops data will be added by sellers themselves
 
 ## TO-DO
-- correct double amounts on ingredients --> check if can be solved on post in WeeklyPlan view
-- Get all ingredients from sample in a veriable --> check recipes[0].extendedIngredients[0].name (use 2 or 3 for loops)
+
+### Ana-Mari :
+ - Push to GitHub branch and merge
+ - Check lesson for geo-localisation
+ - Check visualisation issue : maps image + mark
+
+### Nata :
+ - Push to GitHub branch and merge
+ - Product list view based on figma - frontend
+ - Adapt paypal routes once applied on project if needed
+
+### Isa :
+ - Push to GitHub branch and merge
+ - Fix decimal issue for products - DONE (price DECIMAL(10,2),)
+ - Create another table for ingredient reference
 
 ## DOING
 - INVESTIGATION - Documentation API google MAPS
@@ -22,8 +35,8 @@
 - BACKEND - Shops tables
 
 ## DONE
- - recovered list of ingredients in variable "ingredientList" by using a for loop on recipes, in App(lines 85-97).js
- - created a ingredients data file called Ingredients in test folder
+ - Recovered list of ingredients in variable "ingredientList" by using a for loop on recipes, in App(lines 85-97).js
+ - Created a ingredients data file called Ingredients in test folder
  - Added a delete route in list as to delete all the ingredients from a plan_id when a recipe is deleted and the all array is re-posted with the updated recipes list ingredients
  - Backend route shopsRouter created(shops.js). 
   1. GET shops info : "http://localhost:5000/api/shops/"
