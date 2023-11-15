@@ -22,6 +22,11 @@ import Spoonacular from './views/Spoonacular';
 import UsersView from './views/UsersView';
 import WeekPlanView from './views/WeekPlanView';
 
+// Map imports
+import { getHome } from './helpers/map-helpers/geoLocation';
+import MapView from './views/mapView';
+// 
+
 const EMPTY_FORM = {
     API_id: 0,
     recipe_title: '',
@@ -57,11 +62,27 @@ function App() {
     const [addedItems, setAddedItems] = useState([]);
     let [newList] = useState([]);
 
+    // Map View
+    const [home, setHome] = useState(null);  // center of map
+
+    // Set "home" when the app loads
+    useEffect(() => {
+        getAndSetHome();
+    }, []);
+
+    async function getAndSetHome() {
+        let latLng = await getHome();  // returns [lat, lng]
+        console.log(latLng)
+        setHome(latLng);
+    }
+    // END OF MAP VIEW CODE
+
     let recipesObject = { newList, addedItems, setAddedItems, warning, setWarning, user, editingPlan, setEditingPlan, userPlans, setUserPlans, getUserPlans, newPlan, setNewPlan, recipes, setRecipes, setPlans, editingRecipeId, setEditingRecipeId, featVisible, setfeatVisible, setFeatRecipe, showFeatRecipe, setAddedRecipe, planRecipes, updatePlanRecipes:(planRecipes) => setPlanRecipes(planRecipes), addedRecipe, featRecipe };
 
     useEffect(() => {
         getUserPlans();
       }, []);
+
 
     //FUNCTION TO CLICK ON RECIPE, VISUALIZE RECIPE ON TOP & ADDS RECIPE'S DATA TO CONST addedRecipe
     function showFeatRecipe(id){
@@ -165,6 +186,9 @@ function App() {
                             </PrivateRoute>  } />  
                         
                         <Route path="/weekPlan/:planId" element={<WeekPlanView /> } />
+
+                        <Route path="/shopsView/:planId" element={<MapView  home={home}/>} />
+
                     
                         <Route path="*" element={<ErrorView code="404" text="Page not found" />} />
                     </Routes>
