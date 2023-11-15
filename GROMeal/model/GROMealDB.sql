@@ -25,6 +25,7 @@ VALUES
     ('Laura','$2b$12$tiAz4eaXlpU.CdltUVvw6udLA2BWsitk5zXM2XOm2IpAeAiFfMCdy','Laura@acme.com'),
     ('Isabelle','$2b$12$HF7mO4.LZh5aQLjmFimRbOc22VX.abiNwHA7E/dd1g2OyloySKCY2','Isabelle@acme.com');
 
+-- Marta = pass1, Clara = pass5, Laura = pass3, Claudia = pass8, Isabelle = pass6
 
 -- TABLE for Weekly Plannings
 CREATE TABLE plans (

@@ -11,3 +11,24 @@
    font-family: Segoe UI;
    text-shadow: 1px 1px 1px grey
 }
+
+/* FROM MAP SETTING */
+
+/* .App h2 {
+    margin: 0 0 1em 0;
+    border-bottom: 1px solid #ccc;
+} */
+
+#mapTable {
+    border-collapse: collapse;
+}
+
+#mapTBody {
+    padding: 1px 5px;
+    vertical-align: top;
+}
+
+.mapCells {
+    padding: 1px 5px;
+    vertical-align: top;
+}
