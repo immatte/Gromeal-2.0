@@ -69,7 +69,7 @@ router.get("/products/search", async function(req, res, next) {
   let shopsId = req.params.shopsId 
   let shops_product = req.body;
   let sql = `INSERT INTO shops_products (shop_id, product_name, price) VALUES (${shopsId}, "${shops_product.product_name}", ${shops_product.price});`
-  
+ 
   try {
       await db(sql);
       let result = await db(`SELECT * FROM shops_products`);
