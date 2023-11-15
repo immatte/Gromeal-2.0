@@ -254,8 +254,6 @@ const shoppingList = []
         console.log(`Server error: ${err.message}`);
     }
   }
-    // DOWNLOAD FUNCTION
-  let weekDayArray = ['monday', 'tuesday', 'wednesday', 'thursday', "friday", "saturday", "sunday"];
 
   const downloadPdf = event => {
     var doc = new jsPDF({
@@ -301,10 +299,6 @@ const shoppingList = []
             addedItems.map(item => (
                 <div className="card" key={item.id}>
                     <div className="row p-2">
-                         {/* <div className='col-1' >
-                            
-                            {item.id}
-                        </div> */}
                         <div className='col-6 px-5'>
                             
                             {item.item_name}
