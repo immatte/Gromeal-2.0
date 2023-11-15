@@ -107,5 +107,9 @@ VALUES
     (1, 'couscous',4.60),
     (1, 'textured soybeans',7.40),
     (1, 'quinoa',7.70),
+    (1, 'chia',12.20),
+    (1, 'black beans',3.80),
+    (1, 'grated coconut',11.00),
+    (1, 'fine textured soy',7.40),
     (2, 'lentils', 3.65);
 
