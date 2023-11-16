@@ -279,8 +279,8 @@ const shoppingList = []
                     </div>
                     <div className="col-8 mx-auto align-items-center"><ProgressBar activeStep={2}/></div>
                     <div className="col-2 mx-auto text-end">
-                    <NavLink id="backNext" className='col'>
-                        
+                        <NavLink id="backNext" className='col'to={`/shopsView/${planId}`}>
+                            NEXT
                         </NavLink>
                     </div>
 
