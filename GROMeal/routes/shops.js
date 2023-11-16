@@ -8,8 +8,8 @@ router.get("/", async function(req, res, next) {
 
    try {
      let results = await db(`SELECT * FROM shops`);
-     let plans = results.data;
-     res.send(plans);
+     let shops = results.data;
+     res.send(shops);
    } catch (err) {
      res.status(500).send({ error: err.message });
    }
@@ -20,8 +20,8 @@ router.get("/products", async function(req, res, next) {
 
   try {
     let results = await db(`SELECT * FROM shops_products`);
-    let plans = results.data;
-    res.send(plans);
+    let products = results.data;
+    res.send(products);
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
@@ -33,8 +33,8 @@ router.get("/:shopsId", async function(req, res, next) {
   let shopsId = req.params.shopsId 
    try {
      let results = await db(`SELECT * FROM shops_products WHERE shop_id = ${shopsId}`);
-     let plans = results.data;
-     res.send(plans);
+     let shop = results.data;
+     res.send(shop);
    } catch (err) {
      res.status(500).send({ error: err.message });
    }
@@ -45,8 +45,8 @@ router.get("/products/:product", async function(req, res, next) {
   let product = req.params.product 
    try {
      let results = await db(`SELECT * FROM shops_products WHERE id = ${product}`);
-     let plans = results.data;
-     res.send(plans);
+     let productDetail = results.data;
+     res.send(productDetail);
    } catch (err) {
      res.status(500).send({ error: err.message });
    }
@@ -57,8 +57,8 @@ router.get("/products/search", async function(req, res, next) {
   const {search} = req.query
    try {
      let results = await db(`SELECT * FROM shops_products WHERE product_name LIKE '%${search}%'`);
-     let search = results.data;
-     res.send(search);
+     let filteredSearch = results.data;
+     res.send(filteredSearch);
    } catch (err) {
      res.status(500).send({ error: err.message });
    }
