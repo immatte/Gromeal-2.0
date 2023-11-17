@@ -24,7 +24,7 @@ import WeekPlanView from './views/WeekPlanView';
 
 // Map imports
 import { getHome } from './helpers/map-helpers/geoLocation';
-import MapView from './views/mapView';
+import MapView from './views/MapView';
 // 
 
 const EMPTY_FORM = {
@@ -72,12 +72,12 @@ function App() {
 
     async function getAndSetHome() {
         let latLng = await getHome();  // returns [lat, lng]
-        console.log(latLng)
         setHome(latLng);
     }
+
     // END OF MAP VIEW CODE
 
-    let recipesObject = { newList, addedItems, setAddedItems, warning, setWarning, user, editingPlan, setEditingPlan, userPlans, setUserPlans, getUserPlans, newPlan, setNewPlan, recipes, setRecipes, setPlans, editingRecipeId, setEditingRecipeId, featVisible, setfeatVisible, setFeatRecipe, showFeatRecipe, setAddedRecipe, planRecipes, updatePlanRecipes:(planRecipes) => setPlanRecipes(planRecipes), addedRecipe, featRecipe };
+    let recipesObject = {newList, addedItems, setAddedItems, warning, setWarning, user, editingPlan, setEditingPlan, userPlans, setUserPlans, getUserPlans, newPlan, setNewPlan, recipes, setRecipes, setPlans, editingRecipeId, setEditingRecipeId, featVisible, setfeatVisible, setFeatRecipe, showFeatRecipe, setAddedRecipe, planRecipes, updatePlanRecipes:(planRecipes) => setPlanRecipes(planRecipes), addedRecipe, featRecipe };
 
     useEffect(() => {
         getUserPlans();
