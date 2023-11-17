@@ -1,5 +1,5 @@
+import React, { useState, useEffect } from 'react';
 import { geocode } from './geo-opencage';
-
 /**
  * Determine "home" (the starting latitude/longitude) of the map.
  * 
@@ -21,6 +21,8 @@ const DEBUG = true;
  **/
 
 async function getHome() {
+    
+
     // Check for 'home' query param
     let params = new URLSearchParams(window.location.search);  // parse query params
     if (params.has('home')) {
@@ -41,6 +43,7 @@ async function getHome() {
         if (DEBUG) {
             console.log('geoloc: browser location:', latitude, longitude);
         }
+        
         return [latitude, longitude];
     } catch (err) {
         console.log('geoloc: error:', err);

@@ -18,7 +18,6 @@ function MarkerMap(props) {
         nameAnchor: [1, -34],
         shadowSize: [41, 41]
     });
-
     return (
         <MapContainer 
             className="MarkerMap" 
