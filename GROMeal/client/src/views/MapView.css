@@ -1,0 +1,11 @@
+.show-button{
+    scale: 80%;
+    text-align: right;
+}
+
+.show-button-border{
+    text-align: right;
+    border: 1px solid black;
+    width: 30px;
+
+}

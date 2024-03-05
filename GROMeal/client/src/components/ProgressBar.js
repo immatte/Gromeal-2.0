@@ -3,7 +3,7 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 
-const steps = ['Add Meals', 'Edit your Weekly Plan', 'Show Shopping List'];
+const steps = ['Add Meals', 'Edit your Weekly Plan', 'Show Shopping List', 'Show Shops'];
 
 export default function ProgressBar({activeStep}) {
 
