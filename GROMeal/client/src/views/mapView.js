@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import AddressForm from '../components/map-components/AddressForm';
+import { NavLink, useParams, Route, Routes, useNavigate } from 'react-router-dom';
 import MarkerTable from '../components/map-components/MarkerTable';
 import MarkerMap from '../components/map-components/MarkerMap';
 import { geocode } from '../helpers/map-helpers/geo-opencage';
+import ProgressBar from '../components/ProgressBar';
+import './MapView.css'
+
+
+
 
 
 
@@ -24,6 +30,7 @@ function MapView(props) {
     
     // sort array(ascendent by default)
     // reverse array
+    const { planId } = useParams();
 
     useEffect(() => {
         getShops();
@@ -141,24 +148,47 @@ function MapView(props) {
     searchBydistance.reverse()
     console.log('searchBydistance', searchBydistance);
     return (
-        <div className="Demo1View">
-            <div className="row mb-5">
-      
-                <div className="col">
-                    {props.home && <MarkerMap places={places} home={props.home} zoom={13} />}
-                </div>
-            </div>
-            {/* <div>
-                {places.map(place =>(
-                    <div>
-                        <p key={1}>{place.latLng[0]}</p>
-                        <p>{place.latLng[1]}</p>
-                    </div>
-                    ) )}
-                
-            </div> */}
+        // <div>
+            <div className='banner1 pb-5 m-0' style={{backgroundColor: '#FFCC00'}}>
+                <div className="container pt-5 pb-5 align-items-center">
+                    <div className="row col-12 mx-auto">
+                        <div className="col-2 mx-auto">
+                            <NavLink id="backNext" className='col' to={`/weekPlan/${planId}`}>
+                                BACK 
+                            </NavLink>
+                        </div>
+                        <div className="col-8 mx-auto align-items-center"><ProgressBar activeStep={2}/></div>
+                        <div className="col-2 mx-auto text-end">
+                            <NavLink id="backNext" className='col'to={`/shopsView/${planId}`}>
+                                NEXT
+                            </NavLink>
+                        </div>
 
-            <MarkerTable places={places} />
+                </div>
+            </div>   
+            <div className='show-button-border'>
+                <h2 className='show-button'>Show map</h2>
+            </div>
+            <div className="MapView">
+                
+                <div className="row mb-5">
+        
+                    <div className="col">
+                        {props.home && <MarkerMap places={places} home={props.home} zoom={13} />}
+                    </div>
+                </div>
+                {/* <div>
+                    {places.map(place =>(
+                        <div>
+                            <p key={1}>{place.latLng[0]}</p>
+                            <p>{place.latLng[1]}</p>
+                        </div>
+                        ) )}
+                    
+                </div> */}
+
+                <MarkerTable places={places} />
+            </div>
         </div>
     );
 }
