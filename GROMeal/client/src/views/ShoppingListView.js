@@ -170,6 +170,27 @@ const shoppingList = []
     //   }
     //   console.log(addedItems);
 
+    async function addItemToDatabase() {
+      try {
+          const response = await fetch(`/api/list/${planId}`, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(addedItems)
+          });
+          if (response.ok) {
+              const newList = await response.json();
+              console.log('Items added:', newList);
+              // Assuming newList contains the updated list after adding the items
+              setAddedItems(newList);
+          } else {
+              console.log('Failed to add items:', response.status, response.statusText);
+          }
+      } catch (error) {
+          console.error('Error:', error);
+      }
+  }
 
 
     //POST function to modify a recipe
@@ -254,6 +275,8 @@ const shoppingList = []
         console.log(`Server error: ${err.message}`);
     }
   }
+
+ 
 
   const downloadPdf = event => {
     var doc = new jsPDF({
