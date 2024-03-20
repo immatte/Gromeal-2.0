@@ -188,7 +188,7 @@ function App() {
                         
                         <Route path="/weekPlan/:planId" element={<WeekPlanView /> } />
 
-                        <Route path="/shopsView/:planId" element={<ShopsView  home={home}/>} />
+                        <Route path="/shopsView/:planId" element={<MapView  home={home}/>} />
 
                     
                         <Route path="*" element={<ErrorView code="404" text="Page not found" />} />

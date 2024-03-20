@@ -290,6 +290,49 @@ const shoppingList = []
     doc.save("ShoppingList.pdf");
   }
 
+
+  // Function to fetch products with matching shop_ids NOT WORKING
+  const [foundShops, setFoundShops] = useState(null); // Initialize foundShops state variable
+
+  // Function to fetch products with matching shop_ids
+  async function fetchProductsAndShops() {
+    try {
+      // Make a GET request to the endpoint with the provided planId
+      const response = await fetch(`/api/list/${planId}/find-shops`);
+      
+      // Check if the response is successful
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+  
+      // Parse the JSON response
+      const data = await response.json();
+  
+      // Return the matching products and shops
+      return data;
+    } catch (error) {
+      // Handle any errors
+      console.error('Error fetching data:', error);
+      throw error;
+    }
+  }
+
+  useEffect(() => {
+    // Fetch data when component mounts
+    fetchProductsAndShops()
+      .then((data) => {
+        // Set foundShops state variable with the fetched data
+        setFoundShops(data);
+      })
+      .catch((error) => {
+        // Handle errors
+        console.error('Error:', error);
+      });
+  }, [planId]); // Depend on planId so the effect runs when planId changes
+
+
+
+
     return (
     
       <div className='banner1 pb-5 m-0' style={{backgroundColor: '#FFCC00'}}>
@@ -321,27 +364,46 @@ const shoppingList = []
           {
             addedItems.map(item => (
                 <div className="card" key={item.id}>
-                    <div className="row p-2">
-                        <div className='col-6 px-5'>
-                            
-                            {item.item_name}
-                        </div>
-                        <div className='col-3'>
-                            {Math.round(item.amount)}
-                        </div>
-                    
-                        <div className='col-1'>
-                            
-                            {item.unit}
-                        </div>
+                    <div className="row p-2 align-items-end">
+
                         <div className="col-1 content-right">
                           <button id="buttonA" name={item.item_name} className="btn btn-warning btn-sm" title="delete" type="button" onClick = {(e) => deleteIngredient(item.item_name)} >x</button>
                         </div>
+
+                        <div className='col-5 px-5'>
+                            {item.item_name}
+                        </div>
+
+                        <div className='col-3'>
+                            {Math.round(item.amount)} {item.unit}
+                        </div>
+                     
+                        <div className="col-3">
+                          <button id="buttonA" name={item.item_name} className="btn btn-warning btn-sm" title="delete" type="button" onClick = {(e) => deleteIngredient(item.item_name)} >FIND SHOPS</button>
+                        </div>
+
                     </div>
                 </div>
             ))
           }
         </div>
+        <div>
+      {/* Use foundShops in your component */}
+      {foundShops ? (
+        <div>
+          {/* Display foundShops data */}
+          {/* Example: */}
+          {foundShops.map((product) => (
+            <div key={product.product_name}>
+              <p>Product: {product.product_name}</p>
+              <p>Shop IDs: {product.shop_ids}</p>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p>Loading...</p>
+      )}
+    </div>
     </div>
       </div>
 

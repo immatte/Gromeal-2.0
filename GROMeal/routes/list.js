@@ -151,6 +151,3 @@ router.get("/:planId/find-shops", async (req, res, next) => {
 });
 
 module.exports = router;
-
-
-module.exports = router;
