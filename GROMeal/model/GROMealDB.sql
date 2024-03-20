@@ -112,5 +112,7 @@ VALUES
     (1, 'black beans',3.80),
     (1, 'grated coconut',11.00),
     (1, 'fine textured soy',7.40),
-    (2, 'lentils', 3.65);
+    (2, 'lentils', 3.65),
+    (2, 'black beans', 2.50),
+    (2, 'corn', 1.30);
 

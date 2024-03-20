@@ -25,6 +25,7 @@ import WeekPlanView from './views/WeekPlanView';
 // Map imports
 import { getHome } from './helpers/map-helpers/geoLocation';
 import MapView from './views/MapView';
+import ShopsView from './views/ShopsView';
 // 
 
 const EMPTY_FORM = {
@@ -187,7 +188,7 @@ function App() {
                         
                         <Route path="/weekPlan/:planId" element={<WeekPlanView /> } />
 
-                        <Route path="/shopsView/:planId" element={<MapView  home={home}/>} />
+                        <Route path="/shopsView/:planId" element={<ShopsView  home={home}/>} />
 
                     
                         <Route path="*" element={<ErrorView code="404" text="Page not found" />} />
