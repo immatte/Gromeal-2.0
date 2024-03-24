@@ -51,7 +51,7 @@ DB_PASS=root
 
 - Obtain an API key from [OpenCage](https://opencagedata.com/) and store it in another `.env` file(within the client folder):
 ```
-REACT_APP_OCD_API_KEY=768b72a471a54b748bad08c5a535b7a0
+REACT_APP_OCD_API_KEY=5bcd5497da2e4475b40906a1aa5e7a90
 ```
 
 - Run `npm run migrate` in the project folder of this repository (GROMEAL), in a new terminal window. This will create 3 tables called 'users', 'plans' and 'recipes' in your database.
