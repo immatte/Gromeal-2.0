@@ -25,6 +25,7 @@ import WeekPlanView from './views/WeekPlanView';
 // Map imports
 import { getHome } from './helpers/map-helpers/geoLocation';
 import MapView from './views/MapView';
+import ShopsView from './views/ShopsView';
 // 
 
 const EMPTY_FORM = {
