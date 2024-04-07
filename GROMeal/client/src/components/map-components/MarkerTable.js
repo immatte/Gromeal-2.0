@@ -8,7 +8,7 @@ function MarkerTable(props) {
                 <tr>
                     <th>Input Address</th>
                     <th>Formatted Address (from OpenCage)</th>
-                    <th>Latitude/Longitude</th>
+                    <th>Distance</th>
                 </tr>
             </thead>
             <tbody>
