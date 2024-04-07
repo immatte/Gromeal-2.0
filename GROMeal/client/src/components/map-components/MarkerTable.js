@@ -8,16 +8,17 @@ function MarkerTable(props) {
                 <tr>
                     <th>Input Address</th>
                     <th>Formatted Address (from OpenCage)</th>
-                    <th>Latitude/Longitude</th>
+                    <th>Distance</th>
                 </tr>
             </thead>
             <tbody>
             {
-                props.places.map(p => (
+                props.places.slice(0, 3).map(p => (
                     <tr id='mapTBody' key={p.input_address}>
                         <td className='mapCells'>{ p.input_address }</td>
                         <td className='mapCells'>{ p.formatted_address }</td>
-                        <td className='mapCells'>{p.latLng.join('/')}</td>
+                        <td className='mapCells'>{ p.distance} km </td>
+                        {/* <td className='mapCells'>{p.latLng.join('/')}</td> */}
                     </tr>
                 ))
             }

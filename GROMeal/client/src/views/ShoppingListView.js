@@ -8,12 +8,14 @@ import ProgressBar from '../components/ProgressBar';
 
 import Api from '../helpers/Api';
 import { jsPDF } from "jspdf";
+import { Visibility } from '@mui/icons-material';
 
 function ShoppingListView() {
 
     const [recipes, setRecipes] = useState([]);
     const [planRecipes, setPlanRecipes] = useState([]);
-    
+    const [listVisible, setListVisible] = useState(true);
+    const [shopsVisible, setShopsVisible] = useState(true);
     const [ingredients, setIngredients] = useState([]);
     const [items, setItems] = useState([]);
 
@@ -21,6 +23,9 @@ function ShoppingListView() {
     const { planId } = useParams();
     const { addedItems, setAddedItems} = useContext(RecipesContext);
 
+   // Function to fetch products with matching shop_ids NOT WORKING
+   const [foundShops, setFoundShops] = useState(null); // Initialize foundShops state variable
+   console.log('foundShops', foundShops)
   
     useEffect(() => {
         getRandomRecipes();
@@ -42,6 +47,19 @@ function ShoppingListView() {
     }, []);
 
     
+    function showList(){
+      listVisible?
+        setListVisible(false) :
+        setListVisible(true)
+      
+  };
+
+  function showShops(){
+    shopsVisible?
+      setShopsVisible(false) :
+      setShopsVisible(true)
+    
+};
 
    
 
@@ -291,8 +309,7 @@ const shoppingList = []
   }
 
 
-  // Function to fetch products with matching shop_ids NOT WORKING
-  const [foundShops, setFoundShops] = useState(null); // Initialize foundShops state variable
+ 
 
   // Function to fetch products with matching shop_ids
   async function fetchProductsAndShops() {
@@ -322,6 +339,7 @@ const shoppingList = []
     fetchProductsAndShops()
       .then((data) => {
         // Set foundShops state variable with the fetched data
+        console.log('Found shops', data)
         setFoundShops(data);
       })
       .catch((error) => {
@@ -337,75 +355,79 @@ const shoppingList = []
     
       <div className='banner1 pb-5 m-0' style={{backgroundColor: '#FFCC00'}}>
          <div className="container pt-5 pb-5 align-items-center">
-                    <div className="row col-12 mx-auto">
-                    <div className="col-2 mx-auto">
-                        <NavLink id="backNext" className='col' to={`/weekPlan/${planId}`}>
-                            BACK 
-                        </NavLink>
-                    </div>
-                    <div className="col-8 mx-auto align-items-center"><ProgressBar activeStep={2}/></div>
-                    <div className="col-2 mx-auto text-end">
-                        <NavLink id="backNext" className='col'to={`/shopsView/${planId}`}>
-                            NEXT
-                        </NavLink>
-                    </div>
-
-                </div>
-                </div>   
-      <div className='container-fluid col-10'>
-      
-        
+            <div className="row col-12 mx-auto">
+              <div className="col-2 mx-auto">
+                  <NavLink id="backNext" className='col' to={`/weekPlan/${planId}`}>
+                      BACK 
+                  </NavLink>
+              </div>
+              <div className="col-8 mx-auto align-items-center"><ProgressBar activeStep={2}/></div>
+              <div className="col-2 mx-auto text-end">
+                  <NavLink id="backNext" className='col'to={`/shopsView/${planId}`}>
+                      NEXT
+                  </NavLink>
+              </div>
+          </div> 
+      </div>  
+      <div className='container-fluid col-10'>  
         <div>
           <div className="row col-12 p-0 m-0 d-flex justity-content-between mb-2">
           <h1 className="col" id="title">My Shopping List</h1>
-            <button id="buttonA" className="btn btn-warning btn-md col-4" onClick={downloadPdf}>DOWNLOAD</button>
-            </div>
-            
-          {
-            addedItems.map(item => (
-                <div className="card" key={item.id}>
-                    <div className="row p-2 align-items-end">
-
-                        <div className="col-1 content-right">
-                          <button id="buttonA" name={item.item_name} className="btn btn-warning btn-sm" title="delete" type="button" onClick = {(e) => deleteIngredient(item.item_name)} >x</button>
-                        </div>
-
-                        <div className='col-5 px-5'>
-                            {item.item_name}
-                        </div>
-
-                        <div className='col-3'>
-                            {Math.round(item.amount)} {item.unit}
-                        </div>
-                     
-                        <div className="col-3">
-                          <button id="buttonA" name={item.item_name} className="btn btn-warning btn-sm" title="delete" type="button" onClick = {(e) => deleteIngredient(item.item_name)} >FIND SHOPS</button>
-                        </div>
-
+          <button id="buttonA" className="btn btn-warning btn-md col-4" onClick={downloadPdf}>DOWNLOAD</button>
+            <div >
+              <button id="buttonA" className="btn btn-warning btn-md col-4"onClick={showShops}>{shopsVisible? "Show shops near you":"Hide shops"}</button> 
+              {/* Use foundShops in your component */}
+              {foundShops ? (
+                <div style={{display: shopsVisible?'none':'block'}}>
+                  {/* Display foundShops data */}
+                  {/* Example: */}
+                  {foundShops.map((product) => (
+                    <div key={product.product_name}>
+                      <p>Product: {product.product_name}</p>
+                      <p>Shop IDs: {product.shop_ids}</p>
                     </div>
+                  ))}
                 </div>
-            ))
-          }
-        </div>
-        <div>
-      {/* Use foundShops in your component */}
-      {foundShops ? (
-        <div>
-          {/* Display foundShops data */}
-          {/* Example: */}
-          {foundShops.map((product) => (
-            <div key={product.product_name}>
-              <p>Product: {product.product_name}</p>
-              <p>Shop IDs: {product.shop_ids}</p>
+              ) : (
+                <p>Loading...</p>
+              )}
             </div>
-          ))}
-        </div>
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
-    </div>
+          </div>
+            <button id="buttonA" className="btn btn-warning btn-md col-4"onClick={showList}>{listVisible? "Show list":"Hide list"}</button> 
+            <p>Total ingredients : {addedItems.length}</p>
+            <div style={{display: listVisible?'none':'block'}}>
+              {
+                addedItems.map(item => (
+                    <div className="card" key={item.id}>
+                        <div className="row p-2 align-items-end">
+
+                            <div className="col-1 content-right">
+                              <button id="buttonA" name={item.item_name} className="btn btn-warning btn-sm" title="delete" type="button" onClick = {(e) => deleteIngredient(item.item_name)} >x</button>
+                            </div>
+
+                            <div className='col-5 px-5'>
+                                {item.item_name}
+                            </div>
+
+                            <div className='col-3'>
+                                {Math.round(item.amount)} {item.unit}
+                            </div>
+                        
+                            <div className="col-3">
+                              <button id="buttonA" name={item.item_name} className="btn btn-warning btn-sm" title="delete" type="button" onClick = {(e) => deleteIngredient(item.item_name)} >FIND SHOPS</button>
+                            </div>
+
+                        </div>
+                    </div>
+                ))
+              }
+            </div>
+          </div>
+
       </div>
+      </div>
+      
+      
 
 
         

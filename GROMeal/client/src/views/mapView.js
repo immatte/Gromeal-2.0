@@ -35,7 +35,8 @@ function MapView(props) {
     useEffect(() => {
         getShops();
     }, []);
-
+    console.log(distanceArray)
+    console.log(places)
     // Get All shops
     async function getShops() {
     
@@ -118,7 +119,12 @@ function MapView(props) {
             // Distance in kilometers
             const distance = earthRadius * c;
 
-            newDistanceArray.push(distance);
+            // adds the property distance to objects of array "places"
+            const roundedDistance = Math.round(distance * 100) / 100
+
+            place.distance = roundedDistance;
+
+            newDistanceArray.push(roundedDistance);
         }
 
         
@@ -164,11 +170,11 @@ function MapView(props) {
                             </NavLink>
                         </div>
 
-                </div>
-            </div>   
-            <div className='show-button-border'>
-                <h2 className='show-button'>Show map</h2>
-            </div>
+                    </div>
+                </div>   
+            <button id="buttonA" className="btn btn-warning btn-md col-4">Shops near you</button> 
+            <MarkerTable places={places} />
+            <button id="buttonA"  className="btn btn-warning btn-md col-4">Show map</button>
             <div className="MapView">
                 
                 <div className="row mb-5">
@@ -187,7 +193,6 @@ function MapView(props) {
                     
                 </div> */}
 
-                <MarkerTable places={places} />
             </div>
         </div>
     );
