@@ -14,7 +14,8 @@ function ShoppingListView() {
 
     const [recipes, setRecipes] = useState([]);
     const [planRecipes, setPlanRecipes] = useState([]);
-    const [listVisible, setlistVisible] = useState(true);
+    const [listVisible, setListVisible] = useState(true);
+    const [shopsVisible, setShopsVisible] = useState(true);
     const [ingredients, setIngredients] = useState([]);
     const [items, setItems] = useState([]);
 
@@ -22,6 +23,8 @@ function ShoppingListView() {
     const { planId } = useParams();
     const { addedItems, setAddedItems} = useContext(RecipesContext);
 
+   // Function to fetch products with matching shop_ids NOT WORKING
+   const [foundShops, setFoundShops] = useState(null); // Initialize foundShops state variable
   
     useEffect(() => {
         getRandomRecipes();
@@ -45,10 +48,17 @@ function ShoppingListView() {
     
     function showList(){
       listVisible?
-        setlistVisible(false) :
-        setlistVisible(true)
+        setListVisible(false) :
+        setListVisible(true)
       
   };
+
+  function showShops(){
+    shopsVisible?
+      setShopsVisible(false) :
+      setShopsVisible(true)
+    
+};
 
    
 
@@ -298,8 +308,7 @@ const shoppingList = []
   }
 
 
-  // Function to fetch products with matching shop_ids NOT WORKING
-  const [foundShops, setFoundShops] = useState(null); // Initialize foundShops state variable
+ 
 
   // Function to fetch products with matching shop_ids
   async function fetchProductsAndShops() {
@@ -363,10 +372,11 @@ const shoppingList = []
           <div className="row col-12 p-0 m-0 d-flex justity-content-between mb-2">
           <h1 className="col" id="title">My Shopping List</h1>
           <button id="buttonA" className="btn btn-warning btn-md col-4" onClick={downloadPdf}>DOWNLOAD</button>
-            <div>
+            <div >
+              <button id="buttonA" className="btn btn-warning btn-md col-4"onClick={showShops}>{shopsVisible? "Show shops near you":"Hide shops"}</button> 
               {/* Use foundShops in your component */}
               {foundShops ? (
-                <div>
+                <div style={{display: shopsVisible?'none':'block'}}>
                   {/* Display foundShops data */}
                   {/* Example: */}
                   {foundShops.map((product) => (
@@ -381,7 +391,7 @@ const shoppingList = []
               )}
             </div>
           </div>
-            <button id="buttonA" className="btn btn-warning btn-md col-4"onClick={showList}>{listVisible? "Show list":"Don't show list"}</button> 
+            <button id="buttonA" className="btn btn-warning btn-md col-4"onClick={showList}>{listVisible? "Show list":"Hide list"}</button> 
             <p>Total ingredients : {addedItems.length}</p>
             <div style={{display: listVisible?'none':'block'}}>
               {
