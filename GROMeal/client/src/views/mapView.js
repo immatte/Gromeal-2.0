@@ -170,8 +170,8 @@ function MapView(props) {
                             </NavLink>
                         </div>
 
-                </div>
-            </div>   
+                    </div>
+                </div>   
             <button id="buttonA" className="btn btn-warning btn-md col-4">Shops near you</button> 
             <MarkerTable places={places} />
             <button id="buttonA"  className="btn btn-warning btn-md col-4">Show map</button>

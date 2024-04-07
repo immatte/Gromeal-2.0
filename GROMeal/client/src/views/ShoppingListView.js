@@ -25,6 +25,7 @@ function ShoppingListView() {
 
    // Function to fetch products with matching shop_ids NOT WORKING
    const [foundShops, setFoundShops] = useState(null); // Initialize foundShops state variable
+   console.log('foundShops', foundShops)
   
     useEffect(() => {
         getRandomRecipes();
@@ -338,6 +339,7 @@ const shoppingList = []
     fetchProductsAndShops()
       .then((data) => {
         // Set foundShops state variable with the fetched data
+        console.log('Found shops', data)
         setFoundShops(data);
       })
       .catch((error) => {
